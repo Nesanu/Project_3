@@ -33,8 +33,6 @@ async function getWorks(){
         figureElement.appendChild(figCaption)
 
         gallery.appendChild(figureElement);
-    
-
 
    }
 
@@ -56,6 +54,28 @@ getWorks()
 // });
 
 // 
+
+async function getCategories(){
+    const reponse = await fetch("http://localhost:5678/api/categories");
+    const categoriesList = await reponse.json();
+    console.log("categories", categoriesList)
+    
+    // Recupérer la div gallery du fichier index.html: 
+
+    let categories = document.querySelector(".categories");
+    console.log(categories)
+
+    for (let i = 0; i < categoriesList.length; i++) {
+        console.log(categoriesList[i].title)
+        
+// Créer le filtre des travaux et ajouter en tant qu'enfant à la div 'categories' (append child)
+} 
+
+}
+
+getCategories()
+
+
 
 
 
