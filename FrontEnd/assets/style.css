@@ -232,34 +232,38 @@ li:hover {
 	width: auto;
 }
 
-.categories {
+.filtres {
+	gap: 20px;
+}
+
+.categories-list {
 	display: inline;
 	flex-direction: row;
 	justify-content: center;
 	height: 37px;
-	width: 585px;
 	border-radius: 60px;
 	cursor: auto;
 	font-size: medium;
 	border: 1px;
 	align-items: center;
+	padding: 20px;
+	margin-bottom: 30px;
 
 }
 
 .btn-filtres {
-	font-size: medium;
 	font-family: Syne;
 	color: #1D6154;
 	font-size: 16px;
 	background-color: white;
 	border: 1px solid #1D6154;
-	border-radius: 15px 15px 15px 15px;
+	border-radius: 30px;
 	padding: 10px;
 	font-weight: 700;
-	margin: 7px;
 	line-height: 19px;
 	letter-spacing: 0em;
 	text-align: center;
+	min-width: 100px;
 }
 
 .btn-filtres:hover {
