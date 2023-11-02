@@ -230,11 +230,11 @@ li:hover {
 	flex-wrap: wrap;
 	justify-content: center;
 	width: auto;
+	gap: 20px;
+	margin-bottom: 30px;
 }
 
-.filtres {
-	gap: 20px;
-}
+/*.filtres {}*/
 
 .categories-list {
 	display: inline;

@@ -1,13 +1,16 @@
 console.log("Hello")
 
+
+let worksList = []
+
 async function getWorks(){
     const reponse = await fetch("http://localhost:5678/api/works");
-    const worksList = await reponse.json();
+    worksList = await reponse.json()
     console.log("works", worksList)    
 
 // Recupérer la div gallery du fichier index.html: 
 // const gallery = document.querySelectorAll(".gallery");
-    let gallery = document.querySelector(".gallery");
+    let gallery = document.querySelector(".gallery")
     console.log(gallery)
 
     for (let i = 0; i < worksList.length; i++) {
@@ -48,43 +51,73 @@ async function getCategories(){
     
     // Recupérer la div filtres-travaux du fichier index.html: 
     // let categories = document.querySelector(".categories"); ?
-    // console.log(categories)
 
-    let filtres = document.querySelector(".filtres");
+    let filtres = document.querySelector(".flex-row-center")
     console.log(filtres)
 
     for (let i = 0; i < categoriesList.length; i++) {
         console.log(categoriesList[i].name)
-        // console.log(categoriesList[i].title)
+        
 
 // Créer le filtre des travaux document.createElement et ajouter en tant qu'enfant à la div 'categories' 
 // (append child)
     let buttonElement = document.createElement("button")
     buttonElement.setAttribute("class","btn-filtres")
-    // console.log("filtres", buttonElement)
-    
+    buttonElement.innerText = "Tous"
+    filtres.appendChild(buttonElement)
+    console.log(categoriesList[i].name)
+
+    buttonElement = document.createElement("button")
+    buttonElement.setAttribute("class","btn-filtres")
     buttonElement.innerText = categoriesList[i].name
-    
-    categoriesList.appendChild(buttonElement)
-    // categories.appendChild(button)
+    filtres.appendChild(buttonElement)
 
-    filtres.appendChild(button);
-
-    button.addEventListener("click", () => {
+    buttonElement.addEventListener("click", () => {
         console.log(categoriesList[i].name)
+        filterWorksByCategory(categoriesList[i].id)
     } )
-const 
-
-
 
 } 
 
+
 }
+
+function filterWorksByCategory(categoryId) {
+    console.log(categoryId)
+
+    
+
+//    Creer le filter, actualiser l'affichage (regarder la fonction get works)
+}
+
+
+const boutonFiltrer = document.querySelector(".flex-row-center");
+
+boutonFiltrer.addEventListener("click", function () {
+   const filterWorksByCategory= categoriesWorks.filter(function (worksList) {
+       return ?
+    });
+
+   });
+   
+
+   var arrByID = arr.filter(filtrerParID);
+
+console.log("Tableau filtré\n", arrByID);
+
+
+// console.log("Nombre d'éléments invalides = ", elementsInvalides);
+
 
 getCategories()
 
 
-    // CHAT GPT:  Il faut ajouter des boutons ou des sélecteurs pour permettre aux utilisateurs 
+
+
+
+
+
+    // CHAT GPT:Il faut ajouter des boutons ou des sélecteurs pour permettre aux utilisateurs 
     // de choisir une catégorie.
 
     // function filtrerParCategorie(categorie) {
