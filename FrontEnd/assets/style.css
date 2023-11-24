@@ -338,3 +338,12 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+
+a[title*="erreur"]:hover {
+	color: black;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
