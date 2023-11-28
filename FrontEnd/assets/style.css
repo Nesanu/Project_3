@@ -339,7 +339,7 @@ footer nav ul {
 	margin: 2em
 }
 
-a[title*="erreur"]:hover {
+a[title*="password"] {
 	color: black;
 	text-align: center;
 	display: flex;

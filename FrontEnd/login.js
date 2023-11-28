@@ -13,12 +13,7 @@ form.addEventListener("submit", async (event) => {
   const password = document.getElementById("password").value;
   window.alert(password);
 
-  const reponse = await fetch("http://localhost:5678/api/users/login");
-  // const usersLogin = await reponse.json();
-});
-
-async function postLogin(url = "", donnees = {}) {
-  const response = await fetch(url, {
+  const response = await fetch("http://localhost:5678/api/users/login", {
     method: "POST",
     mode: "cors",
     cache: "no-cache",
@@ -26,15 +21,27 @@ async function postLogin(url = "", donnees = {}) {
     headers: { "Content-Type": "application/json" },
     redirect: "follow",
     referrerPolicy: "no-referrer",
-    body: JSON.stringify(donnees),
+    body: '{"email","password"}',
+    // body: JSON.stringify(email, password),
   });
   return response.json();
-}
-postData("http://localhost:5678/api/users/login", { userId }).then(
-  (donnees) => {
-    console.log(donnees);
-  }
-);
+});
+
+window.localStorage.setItem();
+
+// postData("http://localhost:5678/api/users/login", { userId }).then(
+//   (donnees) => {
+//     console.log(donnees);
+//   }
+// );
+
+//   const reponse = await fetch("http://localhost:5678/api/users/login");
+//   // const usersLogin = await reponse.json();
+// });
+// async function postLogin(url = "", donnees = {}) {
+
+//   return response.json();
+// }
 
 // // Exemple d'implémentation pour une requête POST
 // async function postData(url = "", donnees = {}) {
