@@ -30,14 +30,23 @@ form.addEventListener("submit", async (event) => {
   window.localStorage.setItem("token", data.token);
   console.log(data.token);
 
-  // Créer une condition: si le token existe if ... else
+  // Créer une condition si le token existe: if ... else
 
-  let tokenOk = true;
-  if (tokenOk) {
-    console.log("The token exists");
+  idData = true;
+  if (data.token) {
+    console.log(idData.value);
+    // console.log(data.value);
   } else {
-    window.alert("Wrong password");
+    window.alert("Wrong password. Please enter your password.");
   }
+
+  // data.token = true;
+  // if (data.token) {
+  //   console.log(idData.value);
+  //   // console.log(data.value);
+  // } else {
+  //   window.alert("Wrong password. Please enter your password.");
+  // }
 });
 
 // postData("http://localhost:5678/api/users/login", { userId }).then(

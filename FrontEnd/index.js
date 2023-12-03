@@ -33,6 +33,14 @@ async function getCategories() {
     filterWorksByCategory(categoriesList[i].id);
   });
 
+  //   function filterByCategory(categoryId) {
+  //     // Votre logique de filtrage ici
+  //     console.log(`Filtrage par catégorie avec l'ID : ${categoryId}`);
+  // }
+
+  // // Appel de la fonction avec un ID de 0
+  // filterByCategory(0);
+
   for (let i = 0; i < categoriesList.length; i++) {
     console.log(categoriesList[i].name);
 
@@ -78,6 +86,7 @@ function fillGallery(arrayOfWork) {
 
 function filterWorksByCategory(categoryId) {
   console.log(categoryId);
+  // filterWorksByCategory(0);
 
   let resultat = worksList.filter((work) => work.categoryId === categoryId);
   console.log(resultat);
