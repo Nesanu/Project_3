@@ -33,9 +33,9 @@
             <!-- <p>Vous avez un projet ? Discutons-en !</p> -->
             <form action="http://localhost:5678/api/users/login" method="post">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" required>
                 <label for="password">Mot de Passe</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" required>
                 <input type="submit" value="Se connecter">
             </form>
             <a href="login.html" title="password">Mot de passe oublié</a>
@@ -44,10 +44,12 @@
         </section>
     </main>
 
-    <footer>
+    <footer class="footer-login">
         <nav>
             <ul>
-                <li>Mentions Légales</li>
+                <li>
+                    <h3 class="mentions-legales-login">Mentions Légales</h3>
+                </li>
             </ul>
         </nav>
     </footer>

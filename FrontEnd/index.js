@@ -86,7 +86,10 @@ function fillGallery(arrayOfWork) {
 
 function filterWorksByCategory(categoryId) {
   console.log(categoryId);
-  // filterWorksByCategory(0);
+  // Pour afficher toutes les images au click du bouton 'Tous', ajouter une condition 'if'
+  // dans la fonction filterWorksByCategory(categoryId),
+  // si le paramètre du id est '0', affichez tous les résultats.
+  // // filterWorksByCategory(0) ????;
 
   let resultat = worksList.filter((work) => work.categoryId === categoryId);
   console.log(resultat);

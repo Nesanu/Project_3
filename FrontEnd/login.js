@@ -1,17 +1,14 @@
 const form = document.querySelector("form");
 form.addEventListener("submit", async (event) => {
-  event.preventDefault();
   console.log(event);
 
-  //   const name = document.getElementById("name").value;
-  //   window.alert(name); "name" non relevant dans ma mon fichier login.html
+  event.preventDefault();
 
-  // window.location.href = "index.html";
   const email = document.getElementById("email").value;
-  window.alert(email);
 
   const password = document.getElementById("password").value;
-  window.alert(password);
+
+  // Verifier si le email et password sont vides. Si les champs sont vides affichez alerte
 
   const idData = {
     email: email,
@@ -25,28 +22,15 @@ form.addEventListener("submit", async (event) => {
   });
 
   const data = await response.json();
-  console.log(data);
-
-  window.localStorage.setItem("token", data.token);
-  console.log(data.token);
 
   // Créer une condition si le token existe: if ... else
 
-  idData = true;
   if (data.token) {
-    console.log(idData.value);
-    // console.log(data.value);
+    window.localStorage.setItem("token", data.token);
+    window.location.replace("index.html");
   } else {
-    window.alert("Wrong password. Please enter your password.");
+    window.alert("Wrong email or password.");
   }
-
-  // data.token = true;
-  // if (data.token) {
-  //   console.log(idData.value);
-  //   // console.log(data.value);
-  // } else {
-  //   window.alert("Wrong password. Please enter your password.");
-  // }
 });
 
 // postData("http://localhost:5678/api/users/login", { userId }).then(
@@ -62,3 +46,7 @@ form.addEventListener("submit", async (event) => {
 
 //   return response.json();
 // }
+//   const name = document.getElementById("name").value;
+//   window.alert(name); "name" non relevant dans ma mon fichier login.html
+
+// window.location.href = "index.html";

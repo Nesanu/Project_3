@@ -347,3 +347,83 @@ a[title*="password"] {
 	justify-content: center;
 	align-items: center;
 }
+
+a[title*="password"]:hover {
+	color: #3D3D3D;
+}
+
+.mentions-legales-login {
+	bottom: 0;
+	font-size: 0.8em;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	text-align: bottom;
+}
+
+.footer-login {
+	font-size: 0.8em;
+	background-color: white;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	text-align: bottom;
+}
+
+body {
+	min-width: 1340px;
+	margin: auto;
+	font-family: 'Work Sans';
+	font-size: 14px;
+	background: #E5E5E5;
+}
+
+/* header {
+	display: flex;
+	flex-direction: column;
+	margin: 0px;
+	gap: 50px;
+} */
+
+.blackBloc {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	background-color: black;
+	width: 100%;
+	height: 40px;
+	margin: 0;
+}
+
+.button-edition {
+	color: white;
+	background-color: black;
+	border: none;
+	font-size: 1em;
+	gap: 10px;
+
+}
+
+.mode-edition {
+	color: #ffffff;
+	background-color: black;
+	border: none;
+
+}
+
+
+.i[title*="fa-pen-to-square"] {
+	color: #ffffff;
+	border: none;
+	width: auto;
+
+}
+
+
+/* 
+.modal-mesprojets {
+    display: inline;
+
+} */
