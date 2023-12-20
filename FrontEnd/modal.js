@@ -1,81 +1,43 @@
-let modal = null;
-const focusableSelector = "button, a, input, textarea";
-let focusables = [];
+// Get the modal
+var modal = document.getElementById("myModal");
 
-const openModal = function (event) {
-  event.preventDefault();
-  modal = document.querySelector(event.target.getAttribute("href"));
-  focusables = Array.from(modal.querySelectorAll(focusableSelector));
-  previouslyFocusedElement = document.querySelector(":focus");
-  modal.style.display = null;
-  focusables[0].focus();
-  modal.removeAttribute("aria-hidden");
-  modal.setAttribute("aria-modal", "true");
-  modal = target;
-  modal.addEventListener("click", closeModal);
-  modal.querySelector(".js-modal-close").addEventListener("click", closeModal);
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function () {
+  modal.style.display = "block";
 };
 
-const closeModal = function (event) {
-  if (modal === null) return;
-  if (previouslyFocusedElement !== null) previouslyFocusedElement.focus();
-  event.preventDefault();
-  //   modal.addEventListener('animationend', function () {
-  //     modal.style.display = "none";
-  //     modal = null;
-  //   })
-  window.setTimeout(function () {
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
     modal.style.display = "none";
-    modal = null;
-  }, 500);
-  modal.setAttribute("aria-hidden", "true");
-  modal.removeAttribute("aria-modal");
-  modal.removeEventListener("click", closeModal);
-  modal
-    .querySelector(".js-modal-close")
-    .removeEventListener("click", closeModal);
-  modal
-    .querySelector(".js-modal-stop")
-    .removeEventListener("click", stopPropagation);
-  s;
-  //   const hideModal = function() {
-  //     modal.style.display = "none"
-  //     modal.removeEventListener('animationend', hideModal)
-  //     modal=null
-  //   }
-};
-// modal.addEventListener("animationend", hideModal);
-
-const stopPropagation = function (event) {
-  event.stopPropagation();
+  }
 };
 
-const focusInModal = function (event) {
-  event.preventDefault();
-  let index = focusables.findIndex((f) => f === modal.querySelector(":focus"));
-  if (event.shiftKey === true) {
-    index--;
-  } else {
-    index++;
-  }
-  if (index >= focusables.length) {
-    index = 0;
-  }
-  if (index < 0) {
-    index = focusables.length - 1;
-  }
-  focusables[index].focus();
-};
+function displayToutesLesPhotos() {
+  document.querySelector("#touteslesphotos").style.display = "block";
+  document.querySelector("#form-add").style.display = "none";
+}
 
-document.querySelectorAll(".js-modal").forEach((a) => {
-  a.addEventListener("click", openModal);
-});
+function displayToutesLesPhotos() {
+  document.querySelector("#touteslesphotos").style.display = "none";
+  document.querySelector("#form-add").style.display = "block";
+}
 
-window.addEventListener("keydown", function (event) {
-  if (event.key === "Escape" || event.key === "Esc") {
-    closeModal(event);
-  }
-  if (event.key === "Tab" && modal !== null) {
-    focusInModal(event);
-  }
-});
+const poubelle = document.createElement("i");
+poubelle.classList.add("fa-solid", "fa-trash-can");
+
+// function fillGallery(arrayOfWork) {
+// let gallery = document.querySelector("gallery_id");
+// gallery.innerHTML = "";
+// }

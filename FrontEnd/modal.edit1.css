@@ -1,28 +1,3 @@
-.blackBloc {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background-color: black;
-    width: 100%;
-    height: 40px;
-    margin: 0;
-}
-
-.mode-edition {
-    color: #ffffff;
-    background-color: black;
-    border: none;
-}
-
-
-.i[title*="fa-regular-icon"] {
-    color: #ffffff;
-    border: 1em;
-    width: auto;
-}
-
-
 /* The Modal (background) */
 .modal {
     display: none;
@@ -75,36 +50,24 @@
     cursor: pointer;
 }
 
-
-.container-projets {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-}
-
-
 .flex-row-center {
-    visibility: collapse;
-    justify-content: center;
-    align-items: center;
-    width: auto;
-    gap: 20px;
-}
-
-.ipen_modifier {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-
-}
-
-.ajout_photo {
     display: none;
 }
+
+
+.mode-edition {
+    color: #ffffff;
+    background-color: black;
+    border: none;
+}
+
+
+.i[title*="icon-pen-to-square"] {
+    border: 1em;
+    width: auto;
+}
+
+
 
 
 

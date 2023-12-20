@@ -1,5 +1,15 @@
 console.log("Hello");
 
+// if (!localStorage.getItem("token")) {
+//   console.log("token not found");
+//   document.querySelector("#btn-edit").style.display = "none";
+//   document.querySelector(".flex-row-center").style.display = "block";
+// } else {
+//   console.log("token found");
+//   document.querySelector("#btn-edit").style.display = "block";
+//   document.querySelector(".flex-row-center").style.display = "block";
+// }
+
 let worksList = [];
 
 async function getWorks() {
