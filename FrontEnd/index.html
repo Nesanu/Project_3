@@ -72,6 +72,8 @@
 				</div>
 			</container>
 
+
+			<!-- Modifs Jérémy du 23.12.23 -->
 			<!-- Trigger/Open The Modal -->
 			<div class="ipen_modifier">
 				<i class="fa-regular fa-pen-to-square" title="icon-pen-to-square"></i>
@@ -81,10 +83,16 @@
 			<div id="myModal" class="modal">
 				<!-- Modal content -->
 				<div class="modal-content">
-					<span class="close">&times;</span>
-					<h2 class="galerie_photo">Galerie photo</h2>
-					<h2 class="ajout_photo">Ajout photo</h2>
-					<button onclick="displayToutesLesPhotos()">Ajout photo</button>
+					<div
+						style="display: flex; flex-direction: row-reverse; justify-content: space-between; width: 100%;">
+						<span id="close-btn" class="close">&times;</span>
+						<span id="prev-btn" onclick="displayToutesLesPhotos()">&times; </span><i
+							class="fa-solid fa-arrow-left"></i>
+					</div>
+					<!-- <span class="close">&times;</span> -->
+					<h2 id="modal-title" class="galerie_photo"></h2>
+
+					<button onclick="displayFormulaireAjoutPhoto()">Ajouter photo</button>
 					<!-- <button onclick="displayFormulairesAjout()">formulaires</button> -->
 					<!-- <form method="get" action=""> -->
 					<form id="form-add" hidden>
@@ -93,15 +101,20 @@
 						<label for="title">Titre</label>
 						<input type="text" value="Malt & Juniper New York" id="title" name="title">
 						<!-- <label for="description"></label>
-						<input type="text" name="description" id="description"> -->
+                        <input type="text" name="description" id="description"> -->
 						<label for="category">Catégorie</label>
 						<input type="text" value="Bar & Restaurant" id="title" name="title">
-						<select name="category" id="category">Catégorie</select>
+						<!-- <select name="category" id="category">Catégorie</select> -->
+						<select name="category" id="category">
+							<option value="objets">Objets</option>
+							<option value="appartements">Appartements</option>
+							<option value="hotels & restaurants">Hotels & Restaurants</option>
+						</select>
 
-						<input type="submit" value="Ajouter une photo"/>
+						<input type="submit" value="Ajouter photo" />
 					</form>
 					<div id="touteslesphotos">
-						<h1>Ajout photo</h1>
+						<h1>Galerie photo</h1>
 						<div id="gallery_id"></div>
 
 						<!-- <img class="modal-content" id="img01"> -->
@@ -109,8 +122,6 @@
 				</div>
 
 			</div>
-
-
 
 			<!---------------------- Essai partie modale tuto Grafikart ----------------- -->
 			<!-- <a href="#modal1" class="js-modal">Ouvrir la boite modale<i class="fa-light fa-pen-to-square"></i></a>
