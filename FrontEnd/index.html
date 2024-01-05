@@ -24,11 +24,15 @@
 
 <body>
 
-	<div class="blackBloc">
+	<div class="blackBloc" hidden>
 		<!-- <input type="button" class="mode-edition"><i class="fa-regular fa-pen-to-square" title="fa-pen-to-square"
 			style="display:none;"></i> -->
 		<button class="mode-edition"><i class="fa-regular fa-pen-to-square" title="fa-regular-icon"></i> Mode
 			édition</button>
+		<!-- <button id="btn-edit"><i class="fa-regular fa-pen-to-square" title="fa-regular-icon"></i> Mode
+				édition</button>
+	 -->
+
 	</div>
 
 	<header>
@@ -64,59 +68,72 @@
 
 		<section id="portfolio">
 
-			<container class="container-projets">
+			<div class="container-projets">
 				<h2 class="mes_projets">Mes Projets</h2>
-				<!-- <div id="gallery_id"></div> -->
+
 				<!-- Creer liste bouttons pour filtres-travaux dans HTML-->
 				<div class="flex-row-center">
 				</div>
-			</container>
 
-
-			<!-- Modifs Jérémy du 23.12.23 -->
-			<!-- Trigger/Open The Modal -->
-			<div class="ipen_modifier">
-				<i class="fa-regular fa-pen-to-square" title="icon-pen-to-square"></i>
-				<button id="myBtn">modifier</button>
+				<!-- Modifs Jérémy du 23.12.23 -->
+				<!-- Trigger/Open The Modal -->
+				<div class="ipen_modifier">
+					<i class="fa-regular fa-pen-to-square" title="icon-pen-to-square"></i>
+					<button id="myBtn">modifier</button>
+				</div>
 			</div>
 			<!-- The Modal -->
 			<div id="myModal" class="modal">
 				<!-- Modal content -->
 				<div class="modal-content">
-					<div
-						style="display: flex; flex-direction: row-reverse; justify-content: space-between; width: 100%;">
+					<div>
 						<span id="close-btn" class="close">&times;</span>
-						<span id="prev-btn" onclick="displayToutesLesPhotos()">&times; </span><i
-							class="fa-solid fa-arrow-left"></i>
+						<!-- <span id="prev-btn" onclick="displayToutesLesPhotos()">&times; </span> -->
+						<span id="arrow-left" onclick="displayToutesLesPhotos()">&times;<i
+								class="fa-solid fa-arrow-left"></i></span>
 					</div>
 					<!-- <span class="close">&times;</span> -->
 					<h2 id="modal-title" class="galerie_photo"></h2>
 
-					<button onclick="displayFormulaireAjoutPhoto()">Ajouter photo</button>
+
 					<!-- <button onclick="displayFormulairesAjout()">formulaires</button> -->
-					<!-- <form method="get" action=""> -->
+					<!-- Utiliser classList.add pour le bouton "+ Ajouter photo" -->
+
 					<form id="form-add" hidden>
-						<label for="image">Image</label>
-						<input type="file" name="image" id="image">
+
+						<div class="ajout-photo">
+							<i class="fa-regular fa-image" value="icon-image"></i>
+
+							<button class="image-add">
+								<input type="file" value="file" name="text" id="text">
+								<label for="file" value="text" name="text" id="text">+ Ajouter photo</label>
+							</button>
+							<p class="jpg.png">jpg.png: 4mo max</p>
+						</div>
+
 						<label for="title">Titre</label>
-						<input type="text" value="Malt & Juniper New York" id="title" name="title">
-						<!-- <label for="description"></label>
-                        <input type="text" name="description" id="description"> -->
+						<input type="text" id="title" name="title">
+						<!-- <input type="text" name="description" id="description"> -->
 						<label for="category">Catégorie</label>
-						<input type="text" value="Bar & Restaurant" id="title" name="title">
 						<!-- <select name="category" id="category">Catégorie</select> -->
 						<select name="category" id="category">
+							<option value=""></option>
 							<option value="objets">Objets</option>
 							<option value="appartements">Appartements</option>
 							<option value="hotels & restaurants">Hotels & Restaurants</option>
 						</select>
 
-						<input type="submit" value="Ajouter photo" />
+						<input type="submit" value="Valider" />
 					</form>
-					<div id="touteslesphotos">
-						<h1>Galerie photo</h1>
-						<div id="gallery_id"></div>
 
+					<div id="touteslesphotos">
+						<!-- <h1>Galerie photo</h1> -->
+						<div id="gallery_id"></div>
+						<button class="ajout-photo-gallery" onclick="displayFormulaireAjoutPhoto()">Ajouter une
+							photo</button>
+						<div class="modal-image">
+
+						</div>
 						<!-- <img class="modal-content" id="img01"> -->
 					</div>
 				</div>

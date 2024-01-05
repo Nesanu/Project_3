@@ -66,14 +66,15 @@
     float: right;
     font-size: 28px;
     font-weight: bold;
+
 }
 
-#close-btn {
+/* #close-btn {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-}
+} */
 
 .close:hover,
 .close:focus {
@@ -85,10 +86,11 @@
 
 .container-projets {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 
@@ -109,7 +111,55 @@
 
 }
 
-#prev-btn {
+/* #prev-btn {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    width: 100%;
+
+} */
+
+.image-add {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    border-radius: 15px;
+    width: 50px;
+    padding: 10px;
+
+}
+
+#form-add {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: start;
+    padding: 50px;
+
+}
+
+.ajout-photo {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-between;
+    background-color: #E8F1F6;
+    min-width: 80%;
+    height: auto;
+    padding: 5px;
+}
+
+input[type="file"] {
+    display: none;
+
+
+}
+
+#arrow-left {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
@@ -117,14 +167,55 @@
 
 }
 
+i[title*="icon-image"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    width: 100px;
+    height: 100px;
+    stroke-width: 10px;
 
-.ajout_photo {
-    display: none;
 }
 
+/* #gallery_id {} */
+
+.modal-image {
+    width: 76.86px;
+    height: auto;
+}
+
+/* #touteslesphotos {
+    width: 76.86px;
+    height: auto;
+} */
 
 
+.ajout-photo-gallery {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    background-color: #1D6154;
+    color: white;
+    min-width: 200px;
+    border-radius: 30px;
+    padding: 5px;
 
+}
+
+.image-add {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    background-color: #E8F1F6;
+    min-width: 150px;
+    height: auto;
+    padding: 5px;
+}
 
 
 
