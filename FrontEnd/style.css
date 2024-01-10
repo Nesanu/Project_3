@@ -227,13 +227,30 @@ li:hover {
 .flex-row-center {
 	display: flex;
 	flex-direction: row;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 	justify-content: center;
 	width: auto;
 	gap: 20px;
 	margin-bottom: 30px;
 }
 
+/* #projets-modifier {
+	display: block;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+} */
+
+.mes_projets {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	width: auto;
+	gap: 20px;
+	margin-bottom: 30px;
+}
 
 
 .categories-list {

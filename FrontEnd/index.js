@@ -1,15 +1,25 @@
 console.log("Hello");
 
-// if (!localStorage.getItem("token")) {
-//   console.log("token not found");
-//   document.querySelector("#btn-edit").style.display = "none";
-// ----------> document.querySelector("blackBloc").style.display = "none";
-//   document.querySelector(".flex-row-center").style.display = "block";
-// } else {
-//   console.log("token found");
-//   document.querySelector("#btn-edit").style.display = "block";
-//   document.querySelector(".flex-row-center").style.display = "block";
-// }
+if (!localStorage.getItem("token")) {
+  console.log("token not found");
+
+  document.querySelector("#blackBloc").style.display = "none";
+  document.querySelector("#filtres").style.display = "flex";
+} else {
+  console.log("token found");
+  // document.querySelector("#btn-edit").style.display = "block";
+  document.querySelector("#blackBloc").style.display = "flex";
+  document.querySelector("#filtres").style.display = "none";
+}
+
+if (!localStorage.getItem("token")) {
+  console.log("token not found");
+
+  document.querySelector(".ipen_modifier").style.display = "none";
+} else {
+  console.log("token found");
+  document.querySelector(".ipen_modifier").style.display = "block";
+}
 
 let worksList = [];
 
@@ -114,15 +124,6 @@ getCategories();
 // de choisir une catégorie.
 
 //     });
-//   }
-
-// Ajoutez des événements pour le filtrage : des gestionnaires d'événements aux
-// éléments de filtrage (boutons, sélecteurs, etc.) pour appeler la fonction de filtrage
-// lorsque l'utilisateur fait une sélection.
-
-// document.getElementById('bouton-catégorie1').addEventListener('click', () => {
-//     filtrerParCategorie('catégorie1');
-//   });
 
 //   // Pour le bouton "Tous"
 //   document.getElementById('bouton-tous').addEventListener('click', () => {
