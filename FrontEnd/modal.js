@@ -32,7 +32,7 @@ window.onclick = function (event) {
 function displayToutesLesPhotos() {
   document.querySelector("#touteslesphotos").style.display = "block";
   document.querySelector("#form-add").style.display = "none";
-  document.querySelector("#modal-title").innerHTML = "Galerie Photos";
+  document.querySelector("#modal-title").innerHTML = "Galerie photo";
   previousBtn.style.display = "none";
 }
 
@@ -83,15 +83,21 @@ async function getWorks() {
     // figureElement.appendChild(figCaption);
 
     gallery.appendChild(figureElement);
+
+    const poubelle = document.createElement("i");
+    poubelle.classList.add("fa-solid", "fa-trash-can");
+    figureElement.appendChild(poubelle);
+    console.log(poubelle);
   }
 }
 
 getWorks();
 
-const poubelle = document.createElement("i");
-poubelle.classList.add("fa-solid", "fa-trash-can");
-figureModal.appendChild(poubelle);
-console.log(poubelle);
+// Exemple code poubelle:
+// const poubelle = document.createElement("i");
+// poubelle.classList.add("fa-solid", "fa-trash-can");
+// figureModal.appendChild(poubelle);
+// console.log(poubelle);
 
 function genererPhotosModal(photosModal) {
   //Création d'une boucle qui va prendre toutes les photos
@@ -173,7 +179,3 @@ iconeElement.addEventListener("click", async (e) => {
 //   let gallery = document.querySelector("gallery_id");
 //   gallery.innerHTML = "";
 // }
-
-// const poubelle = document.createElement("i");
-// poubelle.classList.add("fa-solid", "fa-trash-can");
-// figureModal.appendChild(poubelle);

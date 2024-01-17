@@ -234,13 +234,12 @@ li:hover {
 	margin-bottom: 30px;
 }
 
-/* #projets-modifier {
+#projets-modifier {
 	display: block;
-	flex-direction: row;
-	flex-wrap: wrap;
+	flex-direction: column;
 	justify-content: center;
 	gap: 10px;
-} */
+}
 
 .mes_projets {
 	display: flex;

@@ -69,18 +69,23 @@
 		<section id="portfolio">
 			<div id="projets-modifier">
 				<h2 class="mes_projets">Mes Projets</h2>
-				<div class="container-projets">
-
-					<!-- Creer liste bouttons pour filtres-travaux dans HTML-->
-					<div class="flex-row-center" id="filtres">
-					</div>
-
-					<!-- Trigger/Open The Modal -->
-					<div class="ipen_modifier">
-						<i class="fa-regular fa-pen-to-square" title="icon-pen-to-square"></i>
-						<button id="myBtn">modifier</button>
-					</div>
+				<!-- Trigger/Open The Modal -->
+				<div class="ipen_modifier">
+					<i class="fa-regular fa-pen-to-square" title="icon-pen-to-square"></i>
+					<button id="myBtn">modifier</button>
 				</div>
+			</div>
+			<div class="container-projets">
+
+				<!-- Creer liste bouttons pour filtres-travaux dans HTML-->
+				<div class="flex-row-center" id="filtres">
+				</div>
+
+
+				<!-- <div class="container-filtres">
+						<p class="text-filtres">Filtres</p>
+
+					</div> -->
 			</div>
 			<!-- The Modal -->
 			<div id="myModal" class="modal">
@@ -93,50 +98,57 @@
 								class="fa-solid fa-arrow-left"></i></span>
 					</div>
 					<!-- <span class="close">&times;</span> -->
-					<h2 id="modal-title" class="galerie_photo"></h2>
+					<h2 id="modal-title" class="galerie_photo"> Galerie photo</h2>
 
 
 					<!-- <button onclick="displayFormulairesAjout()">formulaires</button> -->
 					<!-- Utiliser classList.add pour le bouton "+ Ajouter photo" -->
+					<div class="container-ajoutphoto">
+						<form id="form-add">
 
-					<form id="form-add">
+							<div id="ajout-photo" class="ajout-photo">
+								<!-- <div id="fa-image"></div> -->
 
-						<div id="ajout-photo" class="ajout-photo">
-							<span id="fa-image"><i class="fa-regular fa-image" title="icon-image"></i></span>
+								<!-- <span id="icon-fa-regular"> </span>-->
+								<i class="fa-regular fa-image" title="icon-image" id="icon-image"></i>
 
-							<button class="image-add">
-								<label for="file" value="text" name="text" id="text">+ Ajouter photo</label>
-								<input type="file" value="file" name="text" id="text">
+								<div class="image-add">
+									<label for="file" value="text" name="text" id="text">+ Ajouter photo</label>
+									<input type="file" value="file" name="text" id="text">
+								</div>
 
-							</button>
-							<p class="jpg.png">jpg.png: 4mo max</p>
+								<p class="jpg.png">jpg.png: 4mo max</p>
+							</div>
+							<div id="form-bloc">
+								<label for="title">Titre</label>
+								<input type="text" id="title" name="title">
+								<!-- <input type="text" name="description" id="description"> -->
+								<label for="category">Catégorie</label>
+								<!-- <select name="category" id="category">Catégorie</select> -->
+								<select name="category" id="category">
+									<option value=""></option>
+									<option value="objets">Objets</option>
+									<option value="appartements">Appartements</option>
+									<option value="hotels & restaurants">Hotels & Restaurants</option>
+								</select>
+							</div>
+							<hr class="hr-bloc" title="hr-bloc">
+							<input type="submit" value="Valider" />
+							</hr>
+						</form>
+
+						<div id="touteslesphotos">
+							<!-- <h1>Galerie photo</h1> -->
+							<div id="gallery_id" class="gallery_id"></div>
+							<div class="modal-image">
+								<button id="poubelle"><i class="fa-solid fa-trash-can"></i></button>
+								<!-- <img class="modal-content" id="img01"> -->
+							</div>
+							<hr class="hr-bloc-gallery" title="hr-bloc-gallery">
+
+							<button id="ajout-photo-gallery" onclick="displayFormulaireAjoutPhoto()">Ajouter une
+								photo</button>
 						</div>
-						<div id="form-bloc">
-							<label for="title">Titre</label>
-							<input type="text" id="title" name="title">
-							<!-- <input type="text" name="description" id="description"> -->
-							<label for="category">Catégorie</label>
-							<!-- <select name="category" id="category">Catégorie</select> -->
-							<select name="category" id="category">
-								<option value=""></option>
-								<option value="objets">Objets</option>
-								<option value="appartements">Appartements</option>
-								<option value="hotels & restaurants">Hotels & Restaurants</option>
-							</select>
-						</div>
-						<hr id="hr-bloc" title="hr-bloc">
-						<input type="submit" value="Valider" />
-						</hr>
-					</form>
-
-					<div id="touteslesphotos">
-						<!-- <h1>Galerie photo</h1> -->
-						<div id="gallery_id" class="gallery_id"></div>
-						<hr id="hr-bloc" title="hr-bloc">
-						<button class="ajout-photo-gallery" onclick="displayFormulaireAjoutPhoto()">Ajouter une
-							photo</button>
-
-						<!-- <img class="modal-content" id="img01"> -->
 					</div>
 				</div>
 

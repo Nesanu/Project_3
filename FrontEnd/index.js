@@ -54,13 +54,7 @@ async function getCategories() {
     filterWorksByCategory(categoriesList[i].id);
   });
 
-  //   function filterByCategory(categoryId) {
-  //     // Votre logique de filtrage ici
-  //     console.log(`Filtrage par catégorie avec l'ID : ${categoryId}`);
-  // }
-
   // // Appel de la fonction avec un ID de 0
-  // filterByCategory(0);
 
   for (let i = 0; i < categoriesList.length; i++) {
     console.log(categoriesList[i].name);
@@ -107,10 +101,30 @@ function fillGallery(arrayOfWork) {
 
 function filterWorksByCategory(categoryId) {
   console.log(categoryId);
+  // if (categoryId === 0) {
+  //   console.log(gallery);
+  // }
+
+  if (categoryId === 0) {
+    onclick = "resultat()";
+    // console.log(resultat);
+  } else {
+    console.log("");
+  }
+
+  // let boutonTous = {
+  //   id: "all",
+  //   name: "Tous",
+  // };
+  // if ((boutonTous.id === 0)) {
+  //   console.log(resultat);
+  // } else {
+  //   console.log("");
+  // }
   // Pour afficher toutes les images au click du bouton 'Tous', ajouter une condition 'if'
   // dans la fonction filterWorksByCategory(categoryId),
   // si le paramètre du id est '0', affichez tous les résultats.
-  // // filterWorksByCategory(0) ????;
+  //;
 
   let resultat = worksList.filter((work) => work.categoryId === categoryId);
   console.log(resultat);
@@ -129,12 +143,3 @@ getCategories();
 //   document.getElementById('bouton-tous').addEventListener('click', () => {
 //     filtrerParCategorie('tous');
 //   });
-
-// export function ajoutWorks() {
-//     const worksElements = document.querySelectorAll(".gallery");
-
-//     for (Let i = 0; i < worksElements.length; i++) {
-//         worksElements[i].addEventListener("click", async function (event){
-//             /* ... */
-//         });
-//     }
