@@ -101,30 +101,55 @@ function fillGallery(arrayOfWork) {
 
 function filterWorksByCategory(categoryId) {
   console.log(categoryId);
+
+  // Pour afficher toutes les images au click du bouton 'Tous', ajouter une condition 'if'
+  // dans la fonction filterWorksByCategory(categoryId),
+  // si le paramètre du id est '0', affichez tous les résultats.
+  //;
   // if (categoryId === 0) {
   //   console.log(gallery);
   // }
 
-  if (categoryId === 0) {
-    onclick = "resultat()";
-    // console.log(resultat);
-  } else {
-    console.log("");
-  }
+  // if (categoryId === 0) {
+  //   onclick = "resultat()";
+  //
+  // } else {
+  //   console.log("");
+  // }
 
   // let boutonTous = {
   //   id: "all",
   //   name: "Tous",
   // };
-  // if ((boutonTous.id === 0)) {
+  // if (boutonTous.id === 0) {
   //   console.log(resultat);
   // } else {
   //   console.log("");
   // }
-  // Pour afficher toutes les images au click du bouton 'Tous', ajouter une condition 'if'
-  // dans la fonction filterWorksByCategory(categoryId),
-  // si le paramètre du id est '0', affichez tous les résultats.
-  //;
+
+  // Get the button by its ID--------------------------------------NB
+  // var button = document.getElementById("tousButton");
+
+  // // Add an event listener to the button
+  // button.addEventListener("click", function () {
+  //   // Get all the images on the page
+  //   var images = document.getElementsByTagName("img");
+
+  //   // Loop through each image
+  //   for (var i = 0; i < images.length; i++) {
+  //     // Get the current image
+  //     var img = images[i];
+
+  //     // Get the current source of the image
+  //     var src = img.src;
+
+  //     // Set the source of the image to null
+  //     img.src = "";
+
+  //     // Set the source of the image back to its original source
+  //     img.src = src;
+  //   }
+  // });
 
   let resultat = worksList.filter((work) => work.categoryId === categoryId);
   console.log(resultat);
@@ -133,13 +158,3 @@ function filterWorksByCategory(categoryId) {
 }
 
 getCategories();
-
-// CHAT GPT:Il faut ajouter des boutons ou des sélecteurs pour permettre aux utilisateurs
-// de choisir une catégorie.
-
-//     });
-
-//   // Pour le bouton "Tous"
-//   document.getElementById('bouton-tous').addEventListener('click', () => {
-//     filtrerParCategorie('tous');
-//   });
