@@ -99,9 +99,12 @@ async function getWorks() {
 
       // Get the ID of the image to delete
       var imageId = this.dataset.imageId;
-      let monToken = localStorage.getItem("token");
+
+      window.localStorage.setItem("token", data.token);
+      // let monToken = localStorage.getItem("token");
+
       // Send a DELETE request to the API
-      fetch("http://localhost:5678/api/works/{id}" + imageId, {
+      fetch("http://localhost:5678/api/works/1" + imageId, {
         method: "DELETE",
         headers: {
           accept: "*/*",
