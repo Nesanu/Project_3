@@ -1,5 +1,5 @@
 // Get the form
-form = document.getElementById("formAjout");
+form = document.getElementById("#form-add");
 // Add a submit event listener to the form
 form.addEventListener("submit", function (event) {
   // Prevent the default form submission behavior
@@ -11,7 +11,7 @@ form.addEventListener("submit", function (event) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: formData,
-    // body: JSON.stringify(formData),
+    // ou------> : body: JSON.stringify(formData),
   })
     .then((response) => {
       if (!response.ok) {
@@ -19,10 +19,15 @@ form.addEventListener("submit", function (event) {
       }
       return response.json();
     })
+    .then((response) => response.json())
     .then((data) => {
       // The form was successfully submitted
       // You can update the gallery here
       console.log("Success:", data);
+      // Add the new image to the gallery
+      let img = document.createElement("img");
+      img.src = data.imageUrl; // Replace 'imageUrl' with the actual property name in the response
+      gallery.appendChild(img);
     })
     .catch((error) => {
       // There was an error submitting the form
@@ -30,8 +35,11 @@ form.addEventListener("submit", function (event) {
     });
 });
 
+// To check if the form is valid before submission, you can use the checkValidity() method on the form element.
+// If the form is not valid, you can display an error message and prevent the form submission.
+
 // Get the form
-const form = document.getElementById("formAjout");
+form = document.getElementById("form-add");
 
 form.addEventListener("submit", function (event) {
   // Check if the form is valid
@@ -48,10 +56,15 @@ form.addEventListener("submit", function (event) {
   } else {
     // Form is valid, you can continue with form submission
     const formData = new FormData(form);
-    // ... rest of your code
   }
 });
-___________________________________________________________________________________;
+
+// Devrais-je ajouter une nouvelle image à la galerie à l'aide de JavaScript,
+// sans recharger la page après que le formulaire ait été soumis avec succès,
+// après avoir reçu une réponse du serveur, comme dans les lignes 27-30 ?
+
+// Je pense qu'il ne faut pas que je fasse un nvo fetch, méthode Post, comme ci-dessous, car cela redoublerait le code?
+// D'avance merci bcp pour ton avis!
 
 // Add a new image without loading the page after the form is successfully submitted
 

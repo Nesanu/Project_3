@@ -61,6 +61,7 @@ async function getWorks() {
 
     let figureElement = document.createElement("figure");
     figureElement.setAttribute("class", "modal-figure");
+    figureElement.setAttribute("id", "modal-image" + worksList[i].id);
     let imageElement = document.createElement("img");
 
     imageElement.src = worksList[i].imageUrl;
@@ -99,21 +100,17 @@ async function getWorks() {
           // Display an alert
           alert("Projet supprimé");
           // Remove the element from the DOM
-          figureElement = await response.json();
-
-          let figureElement = document.getElementById(
-            ".modal-image" + worksList[i].id
-          );
-          figureElement.parentNode.removeChild(figureElement);
+          // figureElement.setAttribute("id", "modal-image" + worksList[i].id);
+          figureElement.remove();
         })
         .catch((error) => {
+          alert("Echec de suppression, une erreur s'est produite");
           console.error("Error:", error);
         });
     });
   }
-
-  getWorks();
 }
+getWorks();
 
 // function previewImage {
 //   const form = document.getElementById('formAjout');
