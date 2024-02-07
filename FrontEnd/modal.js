@@ -5,7 +5,7 @@ var modal = document.getElementById("myModal");
 var btn = document.getElementById("myBtn");
 
 // // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
+// let span = document.getElementsByClassName("close")[0];
 
 // Get the <span> element that closes the modal
 var closeBtn = document.getElementById("close-btn");
@@ -83,7 +83,13 @@ async function getWorks() {
 
       console.log("click", worksList[i].id);
       // Send a DELETE request to the API
+      // localStorage.setItem("token", data.token);
+
+      // Au lieu d'un localStorage, il vaut mieux un sessionStorage,
+      // c'est beaucoup mieux lors de la deconnexion
+
       let monToken = localStorage.getItem("token");
+
       // console.log(monToken);
 
       fetch("http://localhost:5678/api/works/" + worksList[i].id, {
@@ -112,39 +118,55 @@ async function getWorks() {
 }
 getWorks();
 
-// function previewImage {
-//   const form = document.getElementById('formAjout');
-// const formData = new FormData();
-// }
+// Get the form
+form = document.getElementById("form-add");
+// Add a submit event listener to the form
+form.addEventListener("submit", function (event) {
+  // Prevent the default form submission behavior
+  event.preventDefault();
+  // Create a FormData object from the form
+  const formData = new FormData(form);
+  // Send a POST request to the API
+  fetch("http://localhost:5678/api/works/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: formData,
+    // ou------> : body: JSON.stringify(formData),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      // The form was successfully submitted
+      // You can update the gallery here
+      console.log("Success:", data);
+      // Add the new image to the gallery
+      let img = document.createElement("img");
+      img.src = data.imageUrl; // Replace 'imageUrl' with the actual property name in the response
+      gallery.appendChild(img);
+    })
+    .catch((error) => {
+      // There was an error submitting the form
+      console.error("Error:", error);
+    });
+});
 
-//  const figureElement = await reponse.json();
-// .then((response) => response.json())
-// .then((figureElement) => {
-// // Supprimer la figureElement du html
-// let figureElement = document.getElementById("modal-image" + worksList[i].id);
-// figureElement.parentNode.removeChild(imageElement);
-//   figureElement = document.getElementById(".modal-image" + worksList[i].id);
-//   figureElement.parentNode.removeChild(figureElement);
-// })
-
-//     if (reponse.ok) {
-//       // return false;
-//       window.alert("Photo supprimé avec succes");
-//       // obtenir le corps de réponse en JSON
-//     } else {
-//       window.alert("Echec de suppression, une erreur est survenue");
-//     }
-// }).catch((error) => {
-//   console.error("Error:", error);
-// });
-
-//   .then((response) => response.json())
-//   .then((data) => {
-//     // Supprimer la figureElement du html
-//     let figureElement = document.getElementById("image-" + worksList[i].id);
-//     figureElement.parentNode.removeChild(imageElement);
-//   })
-//   .catch((error) => {
-//     console.error("Error:", error);
-//   //   });
+function previewImage() {
+  // const form = document.getElementById("formAjout");
+  form = document.getElementById("form-add");
+  const formData = new FormData();
+}
+// FileReader();
+// addEventListener("change", (event) => {
+//   const file = event.target.files[0];
+//   const reader = new FileReader();
+//   reader.readAsDataURL(file);
+//   reader.onload = (event) => {
+//     const img = document.getElementById("preview");
+//     img.src = event.target.result;
+//   };
 // });

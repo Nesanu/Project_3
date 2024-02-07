@@ -172,11 +172,16 @@
 
 /* } */
 
+
+
 .hr[title*="hr-bloc"] {
-    /* width: 420px; */
+    border: none;
+    color: #B3B3B3;
+    width: 420px;
     height: 0px;
-    border-top: 1px solid #B3B3B3;
-    /* position: absolute; */
+    border: 1px solid #B3B3B3;
+    position: absolute;
+    margin-top: 10px;
 
 }
 
@@ -372,6 +377,13 @@ input[type="submit"] {
 
 .modal-figure {
     position: relative;
+    /* border: 2px solid #00BFFF; */
+    /* box-sizing: border-box; */
+}
+
+.modal-figure:hover {
+    border: 2px solid #00BFFF;
+    box-sizing: border-box;
 }
 
 .modal-image {
