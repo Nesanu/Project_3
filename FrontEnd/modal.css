@@ -219,7 +219,7 @@ title label {
     height: 16px;
 }
 
-.category {
+.form-category {
     display: flex;
     justify-content: center;
     background-color: #FFFFFF;
@@ -250,13 +250,28 @@ input[type="text"] {
     /* margin: 5px; */
 }
 
-input[type="submit"] {
+input[type="button"] {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
 
+}
+
+#submit-button {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background-color: #1D6154;
+    margin: 2em auto;
+    width: 180px;
+    height: 36px;
+    border-radius: 60px;
+    width: 237px;
 }
 
 #ajout-photo {

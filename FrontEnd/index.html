@@ -104,7 +104,7 @@
 					<!-- <button onclick="displayFormulairesAjout()">formulaires</button> -->
 					<!-- Utiliser classList.add pour le bouton "+ Ajouter photo" -->
 					<div class="container-ajoutphoto">
-						<form id="form-add">
+						<form id="form-add" action="#" method="post">
 
 							<div id="ajout-photo" class="ajout-photo">
 								<!-- <div id="fa-image"></div> -->
@@ -121,11 +121,11 @@
 							</div>
 							<div id="form-bloc">
 								<label for="title">Titre</label>
-								<input type="text" class="title" name="title" title="title">
+								<input type="text" class="form-title" name="title" title="title">
 								<!-- <input type="text" name="description" id="description"> -->
 								<label for="category">Catégorie</label>
 								<!-- <select name="category" id="category">Catégorie</select> -->
-								<select name="category" class="category">
+								<select name="category" class="form-category" id="form-category">
 									<option value=""></option>
 									<option value="objets">Objets</option>
 									<option value="appartements">Appartements</option>
@@ -133,7 +133,8 @@
 								</select>
 							</div>
 							<hr class="hr-bloc" title="hr-bloc">
-							<input type="submit" value="Valider" />
+
+							<input type="button" value="Valider" id="submit-button" />
 							</hr>
 						</form>
 

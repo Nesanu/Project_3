@@ -119,20 +119,41 @@ async function getWorks() {
 getWorks();
 
 // Get the form
-form = document.getElementById("form-add");
+const addForm = document.getElementById("form-add");
 // Add a submit event listener to the form
-form.addEventListener("submit", function (event) {
+const submitButton = document.getElementById("submit-button");
+submitButton.addEventListener("click", async function (event) {
   // Prevent the default form submission behavior
   event.preventDefault();
-  // Create a FormData object from the form
-  const formData = new FormData(form);
+  event.stopPropagation();
+  console.log("hello submit");
+  // Create a FormData object from the form:
+
+  const formData = new FormData(addForm);
+  console.log(formData);
+
+  const selectedPic = document.querySelector("img").files[0];
+  const imgUrl = document.querySelector("image-add").getAttribute("src");
+  const title = document.querySelector("form-title").value;
+  const category = document.getElementById("form-category");
+  const categoryValue = category.options[category.selectedIndex].value;
+  formData.append("image", imgUrl);
+  formData.append("title", title);
+  formData.append("category", categoryValue);
   // Send a POST request to the API
-  fetch("http://localhost:5678/api/works/", {
+  await fetch("http://localhost:5678/api/works/", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { Authorization: `Bearer ${myToken}` },
     body: formData,
-    // ou------> : body: JSON.stringify(formData),
   })
+    // answer = await answer.json();
+    // // Send a POST request to the API
+    // fetch("http://localhost:5678/api/works/", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: formData,
+    //   // ou------> : body: JSON.stringify(formData),
+    // })
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -144,10 +165,16 @@ form.addEventListener("submit", function (event) {
       // The form was successfully submitted
       // You can update the gallery here
       console.log("Success:", data);
+
       // Add the new image to the gallery
-      let img = document.createElement("img");
-      img.src = data.imageUrl; // Replace 'imageUrl' with the actual property name in the response
-      gallery.appendChild(img);
+
+      // let img = document.createElement("img");
+      // img.src = URL.createObjectURL(selectedPic);
+      // gallery.appendChild(img);
+      // URL.createObjectURL(selectedPic);
+      // let img = document.createElement("img");
+      // img.src = data.imageUrl; // Replace 'imageUrl' with the actual property name in the response
+      // gallery.appendChild(img);
     })
     .catch((error) => {
       // There was an error submitting the form
@@ -155,11 +182,10 @@ form.addEventListener("submit", function (event) {
     });
 });
 
-function previewImage() {
-  // const form = document.getElementById("formAjout");
-  form = document.getElementById("form-add");
-  const formData = new FormData();
-}
+// function previewImage() {
+//   const form = document.getElementById('formAjout');
+// const formData = new FormData();
+// }
 // FileReader();
 // addEventListener("change", (event) => {
 //   const file = event.target.files[0];

@@ -35,9 +35,6 @@ form.addEventListener("submit", function (event) {
     });
 });
 
-
-
-
 // To check if the form is valid before submission, you can use the checkValidity() method on the form element.
 // If the form is not valid, you can display an error message and prevent the form submission.
 
@@ -100,5 +97,3 @@ form.addEventListener("submit", function (event) {
 });
 
 form = document.getElementById("form-add");
-
-
