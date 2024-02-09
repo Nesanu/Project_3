@@ -168,10 +168,11 @@ submitButton.addEventListener("click", async function (event) {
 
       // Add the new image to the gallery
 
-      // let img = document.createElement("img");
-      // img.src = URL.createObjectURL(selectedPic);
-      // gallery.appendChild(img);
-      // URL.createObjectURL(selectedPic);
+      let img = document.createElement("img");
+      img.src = URL.createObjectURL(selectedPic);
+      gallery.appendChild(img);
+      URL.createObjectURL(selectedPic);
+      // option 2 ------------------------------->
       // let img = document.createElement("img");
       // img.src = data.imageUrl; // Replace 'imageUrl' with the actual property name in the response
       // gallery.appendChild(img);
