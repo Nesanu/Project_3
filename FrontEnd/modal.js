@@ -1,16 +1,16 @@
 // Get the modal
-var modal = document.getElementById("myModal");
+let modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+let btn = document.getElementById("myBtn");
 
 // // Get the <span> element that closes the modal
 // let span = document.getElementsByClassName("close")[0];
 
 // Get the <span> element that closes the modal
-var closeBtn = document.getElementById("close-btn");
+let closeBtn = document.getElementById("close-btn");
 
-var previousBtn = document.getElementById("arrow-left");
+let previousBtn = document.getElementById("arrow-left");
 
 // When the user clicks on the button, open the modal
 btn.onclick = function () {
@@ -108,6 +108,7 @@ async function getWorks() {
           // Remove the element from the DOM
           // figureElement.setAttribute("id", "modal-image" + worksList[i].id);
           figureElement.remove();
+          // return false;
         })
         .catch((error) => {
           alert("Echec de suppression, une erreur s'est produite");
@@ -129,16 +130,26 @@ submitButton.addEventListener("click", async function (event) {
   console.log("hello submit");
   // Create a FormData object from the form:
 
+  // get files from the input element:
+  const files = addForm.querySelector("input[type=file]").files;
+  console.log(files[0]); // affiche le fichier d'image qui vient d'être téléchargé
+
+  // addForm = document.querySelector("image-add");
+  // const selectedPic = document.querySelector("file").files[0];
+  // const imgUrl = document.querySelector("image-add").getAttribute("src");
+
   const formData = new FormData(addForm);
   console.log(formData);
-
-  const selectedPic = document.querySelector("img").files[0];
-  const imgUrl = document.querySelector("image-add").getAttribute("src");
-  const title = document.querySelector("form-title").value;
-  const category = document.getElementById("form-category");
+  // Create a new FormData object
+  addForm = document.querySelector("form-title").value;
+  formData.append("title", addForm);
+  // const formTitle = document.querySelector("form-title").value;
+  // const title = document.querySelector("form-title").value;
+  addForm = document.querySelector("form-category").value;
+  // const category = document.getElementById("form-category");
   const categoryValue = category.options[category.selectedIndex].value;
-  formData.append("image", imgUrl);
-  formData.append("title", title);
+  formData.append("image", files);
+  // formData.append("title", formTitle);
   formData.append("category", categoryValue);
   // Send a POST request to the API
   await fetch("http://localhost:5678/api/works/", {
@@ -166,12 +177,18 @@ submitButton.addEventListener("click", async function (event) {
       // You can update the gallery here
       console.log("Success:", data);
 
+      // Exemple de code pour ne pas recharger la page après le chargement d'une image à la galerie de la modale
+      form.onsubmit = async (event) => {
+        output.textContent = "Loading...";
+        event.preventDefault();
+      };
       // Add the new image to the gallery
 
       let img = document.createElement("img");
       img.src = URL.createObjectURL(selectedPic);
       gallery.appendChild(img);
-      URL.createObjectURL(selectedPic);
+
+      // URL.createObjectURL(selectedPic);
       // option 2 ------------------------------->
       // let img = document.createElement("img");
       // img.src = data.imageUrl; // Replace 'imageUrl' with the actual property name in the response
