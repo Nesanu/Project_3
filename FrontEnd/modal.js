@@ -1,3 +1,4 @@
+let monToken = localStorage.getItem("token");
 // Get the modal
 let modal = document.getElementById("myModal");
 
@@ -88,8 +89,6 @@ async function getWorks() {
       // Au lieu d'un localStorage, il vaut mieux un sessionStorage,
       // c'est beaucoup mieux lors de la deconnexion
 
-      let monToken = localStorage.getItem("token");
-
       // console.log(monToken);
 
       fetch("http://localhost:5678/api/works/" + worksList[i].id, {
@@ -132,39 +131,24 @@ submitButton.addEventListener("click", async function (event) {
 
   // get files from the input element:
   const files = addForm.querySelector("input[type=file]").files;
-  console.log(files[0]); // affiche le fichier d'image qui vient d'être téléchargé
-
-  // addForm = document.querySelector("image-add");
-  // const selectedPic = document.querySelector("file").files[0];
-  // const imgUrl = document.querySelector("image-add").getAttribute("src");
-
-  const formData = new FormData(addForm);
+  const title = addForm.querySelector(".form-title").value;
+  const category = addForm.querySelector(".form-category").value;
+  const formData = new FormData();
+  console.log(files[0]);
+  console.log(title);
+  console.log(category);
+  formData.append("image", files[0]);
+  formData.append("title", title);
+  formData.append("category", category);
   console.log(formData);
   // Create a new FormData object
-  addForm = document.querySelector("form-title").value;
-  formData.append("title", addForm);
-  // const formTitle = document.querySelector("form-title").value;
-  // const title = document.querySelector("form-title").value;
-  addForm = document.querySelector("form-category").value;
-  // const category = document.getElementById("form-category");
-  const categoryValue = category.options[category.selectedIndex].value;
-  formData.append("image", files);
-  // formData.append("title", formTitle);
-  formData.append("category", categoryValue);
-  // Send a POST request to the API
+
+  console.log(formData);
   await fetch("http://localhost:5678/api/works/", {
     method: "POST",
-    headers: { Authorization: `Bearer ${myToken}` },
+    headers: { Authorization: `Bearer ${monToken}` },
     body: formData,
   })
-    // answer = await answer.json();
-    // // Send a POST request to the API
-    // fetch("http://localhost:5678/api/works/", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: formData,
-    //   // ou------> : body: JSON.stringify(formData),
-    // })
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -177,16 +161,53 @@ submitButton.addEventListener("click", async function (event) {
       // You can update the gallery here
       console.log("Success:", data);
 
-      // Exemple de code pour ne pas recharger la page après le chargement d'une image à la galerie de la modale
-      form.onsubmit = async (event) => {
-        output.textContent = "Loading...";
-        event.preventDefault();
-      };
+      // Get the file input field
+      const fileInput = document.getElementById("input[type=file]");
+      console.log(fileInput);
+      // Get the form
+      function previewImage() {
+        form = document.getElementById("form-add");
+        formData = new FormData();
+      }
+      previewImage();
+      // Get the image preview element
+      const imagePreview = document.getElementById("imagePreview");
+      console.log(imagePreview);
+      // document.getElementById('file').onchange = function() {
+      //
+      // };
+      // Listen for the change event on the file input field
+      fileInput.addEventListener("change", function (event) {
+        // Get the selected file
+        const file = event.target.files[0];
+        console.log(file);
+        // Create a new FileReader object
+        const reader = new FileReader();
+        // Set the onload function for the FileReader
+        reader.onload = function (e) {
+          // Set the source of the image preview to the data URL of the file
+          imagePreview.src = e.target.result;
+        };
+        // Read the file as a data URL
+        reader.readAsDataURL(file);
+      });
+
+      FileReader();
+      addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+          const img = document.getElementById("input[type=file]");
+          img.src = event.target.result;
+        };
+      });
+
       // Add the new image to the gallery
 
-      let img = document.createElement("img");
-      img.src = URL.createObjectURL(selectedPic);
-      gallery.appendChild(img);
+      // let img = document.createElement("img");
+      // img.src = URL.createObjectURL(selectedPic);
+      // gallery.appendChild(img);
 
       // URL.createObjectURL(selectedPic);
       // option 2 ------------------------------->
@@ -200,17 +221,28 @@ submitButton.addEventListener("click", async function (event) {
     });
 });
 
-// function previewImage() {
-//   const form = document.getElementById('formAjout');
-// const formData = new FormData();
+// // Function to fetch categories and populate select options
+// async function fetchCategoriesAndPopulateSelect() {
+//   // Fetch categories from the API
+//   const response = await fetch("http://localhost:5678/api/categories");
+//   const categories = await response.json();
+
+//   // Get the select element
+//   const select = document.querySelector("form-category");
+
+//   // Loop through the categories
+//   for (let category of categories) {
+//     // Create a new option element
+//     const option = document.createElement("option");
+
+//     // Set the value and text of the option
+//     option.value = category.id;
+//     option.textContent = category.name;
+
+//     // Add the option to the select
+//     select.appendChild(option);
+//   }
 // }
-// FileReader();
-// addEventListener("change", (event) => {
-//   const file = event.target.files[0];
-//   const reader = new FileReader();
-//   reader.readAsDataURL(file);
-//   reader.onload = (event) => {
-//     const img = document.getElementById("preview");
-//     img.src = event.target.result;
-//   };
-// });
+
+// // Call the function at the beginning of the file
+// fetchCategoriesAndPopulateSelect();

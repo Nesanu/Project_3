@@ -119,8 +119,6 @@ function filterWorksByCategory(categoryId) {
   //   // Update your gallery with the works
   // });
 
-
-
   // Version 2:
 
   // let boutonTous = {
