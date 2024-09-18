@@ -120,6 +120,19 @@ getWorks();
 
 // Get the form
 const addForm = document.getElementById("form-add");
+const fileInput = addForm.querySelector("input[type=file]");
+fileInput.addEventListener("change", (event) => {
+  const selectedPic = event.target.files[0];
+  console.log(selectedPic);
+  const imageElement = document.getElementById("addimage");
+  imageElement.src = URL.createObjectURL(selectedPic);
+  const icon = document.getElementById("icon-image");
+  icon.style.display = "none";
+  imageElement.style.display = "block"; // display the image
+  console.log(imageElement);
+  console.log(icon);
+});
+
 // Add a submit event listener to the form
 const submitButton = document.getElementById("submit-button");
 submitButton.addEventListener("click", async function (event) {
@@ -162,57 +175,11 @@ submitButton.addEventListener("click", async function (event) {
       console.log("Success:", data);
 
       // Get the file input field
-      const fileInput = document.getElementById("input[type=file]");
-      console.log(fileInput);
-      // Get the form
-      function previewImage() {
-        form = document.getElementById("form-add");
-        formData = new FormData();
-      }
-      previewImage();
-      // Get the image preview element
-      const imagePreview = document.getElementById("imagePreview");
-      console.log(imagePreview);
-      // document.getElementById('file').onchange = function() {
-      //
-      // };
-      // Listen for the change event on the file input field
-      fileInput.addEventListener("change", function (event) {
-        // Get the selected file
-        const file = event.target.files[0];
-        console.log(file);
-        // Create a new FileReader object
-        const reader = new FileReader();
-        // Set the onload function for the FileReader
-        reader.onload = function (e) {
-          // Set the source of the image preview to the data URL of the file
-          imagePreview.src = e.target.result;
-        };
-        // Read the file as a data URL
-        reader.readAsDataURL(file);
-      });
-
-      FileReader();
-      addEventListener("change", (event) => {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = (event) => {
-          const img = document.getElementById("input[type=file]");
-          img.src = event.target.result;
-        };
-      });
 
       // Add the new image to the gallery
 
       // let img = document.createElement("img");
       // img.src = URL.createObjectURL(selectedPic);
-      // gallery.appendChild(img);
-
-      // URL.createObjectURL(selectedPic);
-      // option 2 ------------------------------->
-      // let img = document.createElement("img");
-      // img.src = data.imageUrl; // Replace 'imageUrl' with the actual property name in the response
       // gallery.appendChild(img);
     })
     .catch((error) => {
