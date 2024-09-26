@@ -9,6 +9,14 @@
     margin: 0;
 }
 
+/* .logout {
+    display: block;
+}
+
+.login {
+    display: none;
+} */
+
 .mes_projets {
     display: flex;
     flex-direction: row;

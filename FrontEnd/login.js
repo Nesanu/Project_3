@@ -33,6 +33,17 @@ form.addEventListener("submit", async (event) => {
   }
 });
 
+// if (!localStorage.getItem("token")) {
+//   console.log("token not found");
+
+//   document.querySelector("#login").style.display = "block";
+//   document.querySelector("#logout").style.display = "none";
+// } else {
+//   console.log("token found");
+//   // document.querySelector("#btn-edit").style.display = "block";;
+//   document.querySelector("#login").style.display = "none";
+//   document.querySelector("#logout").style.display = "block";
+// }
 // postData("http://localhost:5678/api/users/login", { userId }).then(
 //   (donnees) => {
 //     console.log(donnees);

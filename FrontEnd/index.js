@@ -5,11 +5,15 @@ if (!localStorage.getItem("token")) {
 
   document.querySelector("#blackBloc").style.display = "none";
   document.querySelector("#filtres").style.display = "flex";
+  // document.querySelector("#login").style.display = "block";
+  // document.querySelector("#logout").style.display = "none";
 } else {
   console.log("token found");
   // document.querySelector("#btn-edit").style.display = "block";
   document.querySelector("#blackBloc").style.display = "flex";
   document.querySelector("#filtres").style.display = "none";
+  // document.querySelector("#login").style.display = "none";
+  // document.querySelector("#logout").style.display = "block";
 }
 
 if (!localStorage.getItem("token")) {
@@ -39,7 +43,7 @@ async function getCategories() {
   console.log("categories", categoriesList);
 
   // Recupérer la div filtres-travaux du fichier index.html:
-  // let categories = document.querySelector(".categories"); ?
+  // let categories = document.querySelector(".categories");
 
   let filtres = document.querySelector(".flex-row-center");
   console.log(filtres);
