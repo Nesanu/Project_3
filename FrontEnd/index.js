@@ -5,15 +5,15 @@ if (!localStorage.getItem("token")) {
 
   document.querySelector("#blackBloc").style.display = "none";
   document.querySelector("#filtres").style.display = "flex";
-  // document.querySelector("#login").style.display = "block";
-  // document.querySelector("#logout").style.display = "none";
+  document.querySelector("#log-in").style.display = "block";
+  document.querySelector("#log-out").style.display = "none";
 } else {
   console.log("token found");
   // document.querySelector("#btn-edit").style.display = "block";
   document.querySelector("#blackBloc").style.display = "flex";
   document.querySelector("#filtres").style.display = "none";
-  // document.querySelector("#login").style.display = "none";
-  // document.querySelector("#logout").style.display = "block";
+  document.querySelector("#log-in").style.display = "none";
+  document.querySelector("#log-out").style.display = "block";
 }
 
 if (!localStorage.getItem("token")) {

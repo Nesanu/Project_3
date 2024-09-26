@@ -187,29 +187,3 @@ submitButton.addEventListener("click", async function (event) {
       console.error("Error:", error);
     });
 });
-
-// // Function to fetch categories and populate select options
-// async function fetchCategoriesAndPopulateSelect() {
-//   // Fetch categories from the API
-//   const response = await fetch("http://localhost:5678/api/categories");
-//   const categories = await response.json();
-
-//   // Get the select element
-//   const select = document.querySelector("form-category");
-
-//   // Loop through the categories
-//   for (let category of categories) {
-//     // Create a new option element
-//     const option = document.createElement("option");
-
-//     // Set the value and text of the option
-//     option.value = category.id;
-//     option.textContent = category.name;
-
-//     // Add the option to the select
-//     select.appendChild(option);
-//   }
-// }
-
-// // Call the function at the beginning of the file
-// fetchCategoriesAndPopulateSelect();

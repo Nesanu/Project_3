@@ -38,26 +38,26 @@ form.addEventListener("submit", function (event) {
 // To check if the form is valid before submission, you can use the checkValidity() method on the form element.
 // If the form is not valid, you can display an error message and prevent the form submission.
 
-// Get the form
-form = document.getElementById("form-add");
+// // Get the form
+// form = document.getElementById("form-add");
 
-form.addEventListener("submit", function (event) {
-  // Check if the form is valid
-  if (!form.checkValidity()) {
-    // Prevent the default form submission behavior
-    event.preventDefault();
-    event.stopPropagation();
+// form.addEventListener("submit", function (event) {
+//   // Check if the form is valid
+//   if (!form.checkValidity()) {
+//     // Prevent the default form submission behavior
+//     event.preventDefault();
+//     event.stopPropagation();
 
-    // Display an error message
-    alert("Please fill in all required fields.");
+//     // Display an error message
+//     alert("Please fill in all required fields.");
 
-    // Add 'was-validated' class to the form to make invalid fields visible
-    form.classList.add("was-validated");
-  } else {
-    // Form is valid, you can continue with form submission
-    const formData = new FormData(form);
-  }
-});
+//     // Add 'was-validated' class to the form to make invalid fields visible
+//     form.classList.add("was-validated");
+//   } else {
+//     // Form is valid, you can continue with form submission
+//     const formData = new FormData(form);
+//   }
+// });
 
 // Devrais-je ajouter une nouvelle image à la galerie à l'aide de JavaScript,
 // sans recharger la page après que le formulaire ait été soumis avec succès,
