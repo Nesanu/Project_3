@@ -104,9 +104,12 @@ async function getWorks() {
           }
           // Display an alert
           alert("Projet supprimé");
+          e.preventDefault();
+
           // Remove the element from the DOM
           // figureElement.setAttribute("id", "modal-image" + worksList[i].id);
           figureElement.remove();
+
           // return false;
         })
         .catch((error) => {
