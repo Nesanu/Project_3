@@ -104,12 +104,9 @@ async function getWorks() {
           }
           // Display an alert
           alert("Projet supprimé");
-          e.preventDefault();
-
           // Remove the element from the DOM
           // figureElement.setAttribute("id", "modal-image" + worksList[i].id);
           figureElement.remove();
-
           // return false;
         })
         .catch((error) => {
@@ -137,6 +134,20 @@ fileInput.addEventListener("change", (event) => {
 });
 
 // Add a submit event listener to the form
+addForm.addEventListener("input", function () {
+  const files = addForm.querySelector("input[type=file]").files;
+  const title = addForm.querySelector(".form-title").value;
+  const category = addForm.querySelector(".form-category").value;
+
+  if (files.length > 0 && title.trim() !== "" && category.trim() !== "") {
+    submitButton.disabled = false;
+    submitButton.style.backgroundColor = "#1D6154"; // Change to desired color
+  } else {
+    submitButton.disabled = true;
+    submitButton.style.backgroundColor = "#A7A7A7"; // Change to desired color
+  }
+});
+
 const submitButton = document.getElementById("submit-button");
 submitButton.addEventListener("click", async function (event) {
   // Prevent the default form submission behavior
@@ -190,27 +201,3 @@ submitButton.addEventListener("click", async function (event) {
       console.error("Error:", error);
     });
 });
-
-// // Get the submit button element
-submitButton = document.getElementById("submit-button");
-
-// Add an event listener to the submit button
-submitButton.addEventListener("click", function () {
-  // Enable the button
-  submitButton.disabled = false;
-
-  // Change the background color
-  submitButton.style.backgroundColor = "green";
-});
-
-// // Optionally, you can add another event listener to handle form submission
-// // and disable the button again if needed
-// submitButton.addEventListener('click', function(event) {
-//   event.preventDefault(); // Prevent the default form submission behavior
-
-//   // Perform form submission logic here
-
-//   // Disable the button again if needed
-//   submitButton.disabled = true;
-//   submitButton.style.backgroundColor = 'grey';
-// });
