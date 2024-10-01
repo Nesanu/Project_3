@@ -53,9 +53,9 @@ async function getCategories() {
   // buttonTous = document.createElement("Tous");
   buttonElement.innerText = "Tous";
   // // Add event listener to the 'Tous' button
-  // buttonTous.addEventListener("click", () => {
-  //   fillGallery(resultat);
-  // });
+  buttonTous.addEventListener("click", () => {
+    fillGallery(resultat);
+  });
   // fillGallery(arrayOfWork);
   // });
 
