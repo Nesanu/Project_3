@@ -204,8 +204,9 @@
     color: #B3B3B3;
     width: fit-content;
     height: 0px;
-    border-top: 1px solid #B3B3B3;
+    border-bottom: 1px solid #B3B3B3;
     position: absolute;
+    margin-top: 10px;
 
 }
 
@@ -267,6 +268,17 @@ input[type="button"] {
 
 }
 
+/* #submit-button:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+} */
+
+/* #submit-button {
+    background-color: #1D6154;
+    cursor: pointer;
+  }
+   */
+
 #submit-button {
     display: flex;
     flex-direction: column;
@@ -280,6 +292,7 @@ input[type="button"] {
     height: 36px;
     border-radius: 60px;
     width: 237px;
+    cursor: pointer;
 }
 
 #ajout-photo {
@@ -383,8 +396,8 @@ input[type="submit"] {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
-    /* justify-content: start; */
+    align-items: start;
+    justify-content: start;
     gap: 20px;
     /* padding: 25px; */
     width: 420/5px;
@@ -450,7 +463,8 @@ input[type="submit"] {
     height: auto;
     border-radius: 30px;
     padding: 5px;
-    margin-top: 50px;
+    margin-top: 20px;
+    position: sticky;
 
 }
 

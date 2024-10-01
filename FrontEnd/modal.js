@@ -190,3 +190,27 @@ submitButton.addEventListener("click", async function (event) {
       console.error("Error:", error);
     });
 });
+
+// // Get the submit button element
+// const submitButton = document.getElementById('submit-button');
+
+// // Add an event listener to the submit button
+// submitButton.addEventListener('click', function() {
+//   // Enable the button
+//   submitButton.disabled = false;
+
+//   // Change the background color
+//   submitButton.style.backgroundColor = 'blue';
+// });
+
+// // Optionally, you can add another event listener to handle form submission
+// // and disable the button again if needed
+// submitButton.addEventListener('click', function(event) {
+//   event.preventDefault(); // Prevent the default form submission behavior
+
+//   // Perform form submission logic here
+
+//   // Disable the button again if needed
+//   submitButton.disabled = true;
+//   submitButton.style.backgroundColor = 'grey';
+// });

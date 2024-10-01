@@ -50,8 +50,14 @@ async function getCategories() {
 
   let buttonElement = document.createElement("button");
   buttonElement.setAttribute("class", "btn-filtres");
-  // buttonElement = document.createElement("tousButton");
+  // buttonTous = document.createElement("Tous");
   buttonElement.innerText = "Tous";
+  // // Add event listener to the 'Tous' button
+  // buttonTous.addEventListener("click", () => {
+  //   fillGallery(resultat);
+  // });
+  // fillGallery(arrayOfWork);
+  // });
 
   filtres.appendChild(buttonElement);
   buttonElement.addEventListener("click", () => {
@@ -112,53 +118,19 @@ function filterWorksByCategory(categoryId) {
 
   // If the categoryId is '0', return all works
   if (categoryId === "0") {
-    return worksList;
+    return arrayOfWork[i];
+    // return resultat;
+    // return worksList[i].id
+    //   fillGallery(worksList);
+  } else {
+    // Otherwise, filter the works by category
+
+    console.log("Tous");
   }
-  //   // Otherwise, filter the works by category
-  //   return worksList.filter((work) => work.categoryId === categoryId);
-  // }
 
   // document.getElementById("tousButton").addEventListener("click", function () {
   //   let works = filterWorksByCategory("0");
   //   // Update your gallery with the works
-  // });
-
-  // Version 2:
-
-  // let boutonTous = {
-  //   id: "all",
-  //   name: "Tous",
-  // };
-  // let works = filterWorksByCategory("0");
-  // if (categoryId === 0) {
-  //   console.log("tous");
-  //   fillGallery(worksList);
-  // } else {
-  //   console.log("");
-  // }
-
-  // Get the button by its ID--------------------------------------NB
-  // let button = document.getElementById("tousButton");
-
-  // // Add an event listener to the button
-  // button.addEventListener("click", function () {
-  //   // Get all the images on the page
-  //   let images = document.getElementsByTagName("img");
-
-  //   // Loop through each image
-  //   for (let i = 0; i < images.length; i++) {
-  //     // Get the current image
-  //     let img = images[i];
-
-  //     // Get the current source of the image
-  //     let src = img.src;
-
-  //     // Set the source of the image to null
-  //     img.src = "";
-
-  //     // Set the source of the image back to its original source
-  //     img.src = src;
-  //   }
   // });
 
   let resultat = worksList.filter((work) => work.categoryId === categoryId);
