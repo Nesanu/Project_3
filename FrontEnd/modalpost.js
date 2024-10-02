@@ -42,9 +42,6 @@ form.addEventListener("submit", function (event) {
 // sans recharger la page après que le formulaire ait été soumis avec succès,
 // après avoir reçu une réponse du serveur, comme dans les lignes 27-30 ci-dessus.
 
-// Je pense qu'il ne faut pas que je fasse un nvo fetch, méthode Post, comme ci-dessous, car cela redoublerait le code?
-// D'avance merci bcp pour ton avis!
-
 // Add a new image without loading the page after the form is successfully submitted
 
 // Get the form

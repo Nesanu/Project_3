@@ -52,10 +52,6 @@ async function getCategories() {
     fillGallery(worksList);
   });
   filtres.appendChild(buttonElement);
-  buttonElement.addEventListener("click", () => {
-    console.log(categoriesList[i].name);
-    filterWorksByCategory(categoriesList[i].id);
-  });
 
   for (let i = 0; i < categoriesList.length; i++) {
     console.log(categoriesList[i].name);

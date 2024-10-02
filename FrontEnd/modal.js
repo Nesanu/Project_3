@@ -86,11 +86,6 @@ async function getWorks() {
       // Send a DELETE request to the API
       // localStorage.setItem("token", data.token);
 
-      // Au lieu d'un localStorage, il vaut mieux un sessionStorage,
-      // c'est beaucoup mieux lors de la deconnexion
-
-      // console.log(monToken);
-
       fetch("http://localhost:5678/api/works/" + worksList[i].id, {
         method: "DELETE",
         headers: {
@@ -134,20 +129,6 @@ fileInput.addEventListener("change", (event) => {
 });
 
 // Add a submit event listener to the form
-addForm.addEventListener("input", function () {
-  const files = addForm.querySelector("input[type=file]").files;
-  const title = addForm.querySelector(".form-title").value;
-  const category = addForm.querySelector(".form-category").value;
-
-  if (files.length > 0 && title.trim() !== "" && category.trim() !== "") {
-    submitButton.disabled = false;
-    submitButton.style.backgroundColor = "#1D6154"; // Change to desired color
-  } else {
-    submitButton.disabled = true;
-    submitButton.style.backgroundColor = "#A7A7A7"; // Change to desired color
-  }
-});
-
 const submitButton = document.getElementById("submit-button");
 submitButton.addEventListener("click", async function (event) {
   // Prevent the default form submission behavior
@@ -182,22 +163,38 @@ submitButton.addEventListener("click", async function (event) {
       }
       return response.json();
     })
-    .then((response) => response.json())
     .then((data) => {
       // The form was successfully submitted
       // You can update the gallery here
       console.log("Success:", data);
 
-      // Get the file input field
-
-      // Add the new image to the gallery
-
-      // let img = document.createElement("img");
-      // img.src = URL.createObjectURL(selectedPic);
-      // gallery.appendChild(img);
+      // Reset the form fields
+      addForm.reset();
+      const imageElement = document.getElementById("addimage");
+      imageElement.src = "";
+      imageElement.style.display = "none";
+      const icon = document.getElementById("icon-image");
+      icon.style.display = "block";
+      submitButton.disabled = true;
+      submitButton.style.backgroundColor = "#A7A7A7"; // Change to desired color
     })
     .catch((error) => {
       // There was an error submitting the form
       console.error("Error:", error);
     });
 });
+addForm.addEventListener("input", function () {
+  const files = addForm.querySelector("input[type=file]").files;
+  const title = addForm.querySelector(".form-title").value;
+  const category = addForm.querySelector(".form-category").value;
+
+  if (files.length > 0 && title.trim() !== "" && category.trim() !== "") {
+    submitButton.disabled = false;
+    submitButton.style.backgroundColor = "#1D6154"; // Change to desired color
+  } else {
+    submitButton.disabled = true;
+    submitButton.style.backgroundColor = "#A7A7A7"; // Change to desired color
+  }
+});
+
+// Removed duplicate submitButton event listener
