@@ -80,7 +80,7 @@ async function getWorks() {
     console.log(poubelle);
     poubelle.addEventListener("click", async (e) => {
       e.preventDefault();
-      e.stopPropagation();
+      // e.stopPropagation();
 
       console.log("click", worksList[i].id);
       // Send a DELETE request to the API
@@ -99,10 +99,63 @@ async function getWorks() {
           }
           // Display an alert
           alert("Projet supprimé");
-          e.preventDefault();
           // Remove the element from the DOM
-          // figureElement.setAttribute("id", "modal-image" + worksList[i].id);
-          figureElement.remove();
+
+          e.preventDefault();
+
+          // // Remove the element from the DOM
+          gallery.removeChild(figureElement);
+
+          // // figureElement.setAttribute("id", "modal-image" + worksList[i].id);
+          // // figureElement.remove("image");
+          // figureElement.remove("modal-image" + worksList[i].id);
+          // figureElement.style.display = "none";
+
+          // Update the page after deleting the image
+          
+          const updatedWorksList = worksList.filter(
+            (work) => work.id !== worksList[i].id
+          );
+          gallery.innerHTML = ""; // Clear the gallery
+          updatedWorksList.forEach((work) => {
+            let figureElement = document.createElement("figure");
+            figureElement.setAttribute("class", "modal-figure");
+            figureElement.setAttribute("id", "modal-image" + work.id);
+            let imageElement = document.createElement("img");
+
+            imageElement.src = work.imageUrl;
+            imageElement.setAttribute("alt", work.title);
+            imageElement.setAttribute("class", "modal-image");
+
+            figureElement.appendChild(imageElement);
+            gallery.appendChild(figureElement);
+
+            const poubelle = document.createElement("i");
+            poubelle.classList.add("fa-solid", "fa-trash-can", "trash-icon");
+            figureElement.appendChild(poubelle);
+            poubelle.addEventListener("click", async (e) => {
+              e.preventDefault();
+              console.log("click", work.id);
+              fetch("http://localhost:5678/api/works/" + work.id, {
+                method: "DELETE",
+                headers: {
+                  accept: "application/json",
+                  Authorization: `Bearer ${monToken}`,
+                },
+              })
+                .then(async (response) => {
+                  if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                  }
+                  alert("Projet supprimé");
+                  gallery.removeChild(figureElement);
+                })
+                .catch((error) => {
+                  alert("Echec de suppression, une erreur s'est produite");
+                  console.error("Error:", error);
+                });
+            });
+          });
           // return false;
         })
         .catch((error) => {
@@ -134,7 +187,7 @@ const submitButton = document.getElementById("submit-button");
 submitButton.addEventListener("click", async function (event) {
   // Prevent the default form submission behavior
   event.preventDefault();
-  event.stopPropagation();
+  // event.stopPropagation();
   console.log("hello submit");
   // Create a FormData object from the form:
 
@@ -152,7 +205,6 @@ submitButton.addEventListener("click", async function (event) {
   console.log(formData);
   // Create a new FormData object
 
-  console.log(formData);
   await fetch("http://localhost:5678/api/works/", {
     method: "POST",
     headers: { Authorization: `Bearer ${monToken}` },
@@ -184,11 +236,34 @@ submitButton.addEventListener("click", async function (event) {
       console.error("Error:", error);
     });
 });
+
 addForm.addEventListener("input", function () {
   const files = addForm.querySelector("input[type=file]").files;
   const title = addForm.querySelector(".form-title").value;
   const category = addForm.querySelector(".form-category").value;
+  const allowedExtensions = ["jpg", "jpeg", "png"];
+  const maxSizeInBytes = 4 * 1024 * 1024; // 4MB in bytes
 
+  if (files.length > 0) {
+    const file = files[0];
+    const fileExtension = file.name.split(".").pop().toLowerCase();
+    const fileSize = file.size;
+
+    if (!allowedExtensions.includes(fileExtension)) {
+      alert("Only jpg, jpeg, and png files are allowed.");
+      submitButton.disabled = true;
+      submitButton.style.backgroundColor = "#A7A7A7";
+      return;
+    }
+
+    if (fileSize > maxSizeInBytes) {
+      alert("File size must be less than 4MB.");
+      submitButton.disabled = true;
+      submitButton.style.backgroundColor = "#A7A7A7";
+      return;
+    }
+  }
+  // Ajouter contrôle sur extension et la taille du fichier
   if (files.length > 0 && title.trim() !== "" && category.trim() !== "") {
     submitButton.disabled = false;
     submitButton.style.backgroundColor = "#1D6154"; // Change to desired color

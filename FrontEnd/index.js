@@ -5,11 +5,15 @@ if (!localStorage.getItem("token")) {
 
   document.querySelector("#blackBloc").style.display = "none";
   document.querySelector("#filtres").style.display = "flex";
+  document.querySelector("#log-in").style.display = "block";
+  document.querySelector("#log-out").style.display = "none";
 } else {
   console.log("token found");
   // document.querySelector("#btn-edit").style.display = "block";
   document.querySelector("#blackBloc").style.display = "flex";
   document.querySelector("#filtres").style.display = "none";
+  document.querySelector("#log-in").style.display = "none";
+  document.querySelector("#log-out").style.display = "block";
 }
 
 if (!localStorage.getItem("token")) {
@@ -103,19 +107,6 @@ function fillGallery(arrayOfWork) {
 
 function filterWorksByCategory(categoryId) {
   console.log(categoryId);
-
-  // If the categoryId is '0', return all works
-  // if (categoryId === "0") {
-  //   return worksList;
-  // }
-  //   // Otherwise, filter the works by category
-  //   return worksList.filter((work) => work.categoryId === categoryId);
-  // }
-
-  // document.getElementById("tousButton").addEventListener("click", function () {
-  //   let works = filterWorksByCategory("0");
-  //   // Update your gallery with the works
-  // });
 
   let resultat = worksList.filter((work) => work.categoryId === categoryId);
   console.log(resultat);
