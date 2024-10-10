@@ -54,7 +54,7 @@ async function getWorks() {
 
   // Recupérer la div gallery du fichier index.html:
   // const gallery = document.querySelectorAll(".gallery");
-  let gallery = document.querySelector("#gallery_id");
+  let gallery = document.querySelector(".gallery_id");
   console.log(gallery);
 
   for (let i = 0; i < worksList.length; i++) {
@@ -78,14 +78,14 @@ async function getWorks() {
     poubelle.classList.add("fa-solid", "fa-trash-can", "trash-icon");
     figureElement.appendChild(poubelle);
     console.log(poubelle);
+
     poubelle.addEventListener("click", async (e) => {
       e.preventDefault();
       // e.stopPropagation();
 
       console.log("click", worksList[i].id);
-      // Send a DELETE request to the API
-      // localStorage.setItem("token", data.token);
 
+      // Send a DELETE request to the API
       fetch("http://localhost:5678/api/works/" + worksList[i].id, {
         method: "DELETE",
         headers: {
@@ -100,70 +100,91 @@ async function getWorks() {
           // Display an alert
           alert("Projet supprimé");
           // Remove the element from the DOM
-
-          e.preventDefault();
-
-          // // Remove the element from the DOM
-          gallery.removeChild(figureElement);
-
-          // // figureElement.setAttribute("id", "modal-image" + worksList[i].id);
-          // // figureElement.remove("image");
-          // figureElement.remove("modal-image" + worksList[i].id);
-          // figureElement.style.display = "none";
-
-          // Update the page after deleting the image
-          
-          const updatedWorksList = worksList.filter(
-            (work) => work.id !== worksList[i].id
-          );
-          gallery.innerHTML = ""; // Clear the gallery
-          updatedWorksList.forEach((work) => {
-            let figureElement = document.createElement("figure");
-            figureElement.setAttribute("class", "modal-figure");
-            figureElement.setAttribute("id", "modal-image" + work.id);
-            let imageElement = document.createElement("img");
-
-            imageElement.src = work.imageUrl;
-            imageElement.setAttribute("alt", work.title);
-            imageElement.setAttribute("class", "modal-image");
-
-            figureElement.appendChild(imageElement);
-            gallery.appendChild(figureElement);
-
-            const poubelle = document.createElement("i");
-            poubelle.classList.add("fa-solid", "fa-trash-can", "trash-icon");
-            figureElement.appendChild(poubelle);
-            poubelle.addEventListener("click", async (e) => {
-              e.preventDefault();
-              console.log("click", work.id);
-              fetch("http://localhost:5678/api/works/" + work.id, {
-                method: "DELETE",
-                headers: {
-                  accept: "application/json",
-                  Authorization: `Bearer ${monToken}`,
-                },
-              })
-                .then(async (response) => {
-                  if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                  }
-                  alert("Projet supprimé");
-                  gallery.removeChild(figureElement);
-                })
-                .catch((error) => {
-                  alert("Echec de suppression, une erreur s'est produite");
-                  console.error("Error:", error);
-                });
-            });
-          });
-          // return false;
+          // figureElement.setAttribute("id", "modal-image" + worksList[i].id);
+          figureElement.remove();
+          return response.json(); // Parse the JSON response
         })
+
+        // figureElement.style.display = "none";
+        // .then((data) => {
+        //   // console.log("Delete successful", data);
+        //   figureElement.style.display = "none";
+        //   // Display an alert
+        //   alert("Projet supprimé");
+        //   // Update the gallery without refreshing the page
+        //   figureElement.remove(); // Remove the figure element from the DOM
+        // })
+        //   // Display an alert
+        //   alert("Projet supprimé");
+        //   e.preventDefault();
+        //   // Remove the element from the DOM
+        // figureElement.remove();
+        //   // // figureElement.remove("image");
+
+        //   figureElement.style.display = "none";
+        // })
         .catch((error) => {
           alert("Echec de suppression, une erreur s'est produite");
           console.error("Error:", error);
         });
     });
   }
+
+  // figureElement.remove("image");
+  // figureElement.remove("modal-image" + worksList[i].id);
+  // figureElement.style.display = "none";
+  // gallery.remove(modalImage + worksList[i].id);
+  // Update the page after deleting the image
+
+  const updatedWorksList = worksList.filter(
+    (work) => work.id !== worksList[i].id
+  );
+  gallery.innerHTML = ""; // Clear the gallery
+  updatedWorksList.forEach((work) => {
+    let figureElement = document.createElement("figure");
+    figureElement.setAttribute("class", "modal-figure");
+    figureElement.setAttribute("id", "modal-image" + work.id);
+    let imageElement = document.createElement("img");
+
+    imageElement.src = work.imageUrl;
+    imageElement.setAttribute("alt", work.title);
+    imageElement.setAttribute("class", "modal-image");
+
+    figureElement.appendChild(imageElement);
+    gallery.appendChild(figureElement);
+
+    const poubelle = document.createElement("i");
+    poubelle.classList.add("fa-solid", "fa-trash-can", "trash-icon");
+    figureElement.appendChild(poubelle);
+    poubelle.addEventListener("click", async (e) => {
+      e.preventDefault();
+      console.log("click", work.id);
+      fetch("http://localhost:5678/api/works/" + work.id, {
+        method: "DELETE",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${monToken}`,
+        },
+      })
+        .then(async (response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          alert("Projet supprimé");
+          gallery.remove(figureElement);
+          // gallery.remove(figureElement);
+          // figureElement.remove();
+          figureElement.classList.remove("modal-image");
+          figureElement.style.display = "none";
+          //  gallery.remove(modalImage + worksList[i].id);
+        })
+        .catch((error) => {
+          alert("Echec de suppression.");
+          console.error("Error:", error);
+        });
+    });
+  });
+  // return false;
 }
 getWorks();
 
@@ -189,6 +210,7 @@ submitButton.addEventListener("click", async function (event) {
   event.preventDefault();
   // event.stopPropagation();
   console.log("hello submit");
+
   // Create a FormData object from the form:
 
   // get files from the input element:
@@ -209,6 +231,7 @@ submitButton.addEventListener("click", async function (event) {
     method: "POST",
     headers: { Authorization: `Bearer ${monToken}` },
     body: formData,
+    // body: JSON.stringify(formData),
   })
     .then((response) => {
       if (!response.ok) {
@@ -220,6 +243,11 @@ submitButton.addEventListener("click", async function (event) {
       // The form was successfully submitted
       // You can update the gallery here
       console.log("Success:", data);
+      // Add the new image to the gallery
+      // let img = document.createElement("img");
+      // img.src = data.imageUrl;
+
+      // e.preventDefault();
 
       // Reset the form fields
       addForm.reset();
@@ -263,7 +291,6 @@ addForm.addEventListener("input", function () {
       return;
     }
   }
-  // Ajouter contrôle sur extension et la taille du fichier
   if (files.length > 0 && title.trim() !== "" && category.trim() !== "") {
     submitButton.disabled = false;
     submitButton.style.backgroundColor = "#1D6154"; // Change to desired color
@@ -272,5 +299,3 @@ addForm.addEventListener("input", function () {
     submitButton.style.backgroundColor = "#A7A7A7"; // Change to desired color
   }
 });
-
-// Removed duplicate submitButton event listener

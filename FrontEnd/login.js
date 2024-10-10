@@ -1,5 +1,6 @@
-const form = document.getElementById("form-login");
-form.addEventListener("submit", async (event) => {
+const loginForm = document.getElementById("form-login");
+// const form = document.getElementById("form-login");
+loginForm.addEventListener("submit", async (event) => {
   console.log(event);
 
   event.preventDefault();

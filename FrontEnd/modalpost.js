@@ -1,18 +1,18 @@
 // Get the form
-let gallery = document.getElementById("gallery"); // Assuming you have a gallery element to append images to
-let form = document.getElementById("form-add");
+// let gallery = document.getElementById("gallery"); // Assuming you have a gallery element to append images to
+let newForm = document.getElementById("form-add");
 // Add a submit event listener to the form
-form.addEventListener("submit", function (event) {
+newForm.addEventListener("submit", function (event) {
   // Prevent the default form submission behavior
-  // event.preventDefault();
+  event.preventDefault();
   // Create a FormData object from the form
-  const formData = new FormData(form);
+  const formData = new FormData(newForm);
   // Send a POST request to the API
   fetch("http://localhost:5678/api/works/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: formData,
-    // ou------> : body: JSON.stringify(formData),
+    body: JSON.stringify(formData),
+    // body: formData,
   })
     .then((response) => {
       if (!response.ok) {
@@ -20,7 +20,7 @@ form.addEventListener("submit", function (event) {
       }
       return response.json();
     })
-    .then((response) => response.json())
+    // .then((response) => response.json())
     .then((data) => {
       // The form was successfully submitted
       // You can update the gallery here
@@ -28,7 +28,11 @@ form.addEventListener("submit", function (event) {
       // Add the new image to the gallery
       let img = document.createElement("img");
       img.src = data.imageUrl; // Replace 'imageUrl' with the actual property name in the response
-      gallery.appendChild(img);
+      alert("Projet ajouté"); // Replace 'imageUrl' with the actual property name in the response
+      // gallery.appendChild(img);
+      gallery.add(figureElement);
+      figureElement.classList.add("modal-image");
+      figureElement.style.display = "block";
     })
     .catch((error) => {
       // There was an error submitting the form
