@@ -64,6 +64,7 @@ async function getWorks() {
   // const gallery = document.querySelectorAll(".gallery");
   let gallery = document.querySelector(".gallery_id");
   console.log(gallery);
+  gallery.innerHTML = ""; // Clear the gallery NB: pour éviter de dupliquer les images
 
   for (let i = 0; i < worksList.length; i++) {
     // Créer la figure avec l'image, titre et ajouter en tant qu'enfant à gallery (append child)
@@ -87,38 +88,6 @@ async function getWorks() {
     figureElement.appendChild(poubelle);
     console.log(poubelle);
 
-    //   // Remove the work from the screen after confirmation from the server
-    //   poubelle.addEventListener("click", async (e) => {
-    //     e.preventDefault();
-    //     console.log("click", worksList[i].id);
-
-    //     try {
-    //       const response = await fetch(
-    //         "http://localhost:5678/api/works/" + worksList[i].id,
-    //         {
-    //           method: "DELETE",
-    //           headers: {
-    //             accept: "application/json",
-    //             Authorization: `Bearer ${monToken}`,
-    //           },
-    //         }
-    //       );
-
-    //       if (!response.ok) {
-    //         throw new Error("Network response was not ok");
-    //       }
-
-    //       // Display an alert
-    //       alert("Projet supprimé");
-
-    //       // Remove the element from the DOM
-    //       figureElement.remove();
-    //     } catch (error) {
-    //       alert("Echec de suppression, une erreur s'est produite");
-    //       console.error("Error:", error);
-    //     }
-    //   });
-    // }
     poubelle.addEventListener("click", async (e) => {
       e.preventDefault();
       // e.stopPropagation();
@@ -144,8 +113,8 @@ async function getWorks() {
           figureElement.remove();
           figureElement.style.display = "none";
           gallery.innerHTML = ""; // Clear the gallery
-          location.reload();
-          // return false;
+          // location.reload();
+          getWorks();
         })
 
         // figureElement.style.display = "none";
@@ -291,7 +260,7 @@ submitButton.addEventListener("click", async function (event) {
       // You can update the gallery here
       alert("Projet ajouté");
       console.log("Success:", data);
-      location.reload();
+      // location.reload();
       // Add the new image to the gallery
       // let img = document.createElement("img");
       // img.src = data.imageUrl;
@@ -307,6 +276,8 @@ submitButton.addEventListener("click", async function (event) {
       icon.style.display = "block";
       submitButton.disabled = true;
       submitButton.style.backgroundColor = "#A7A7A7"; // Change to desired color
+      // Je dois recharger ma galerie après avoir ajouté une image
+      getWorks();
     })
     .catch((error) => {
       // There was an error submitting the form
