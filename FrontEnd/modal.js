@@ -61,7 +61,6 @@ async function getWorks() {
   console.log("works", worksList);
 
   // Recupérer la div gallery du fichier index.html:
-  // const gallery = document.querySelectorAll(".gallery");
   let gallery = document.querySelector(".gallery_id");
   console.log(gallery);
   gallery.innerHTML = ""; // Clear the gallery NB: pour éviter de dupliquer les images
@@ -114,10 +113,14 @@ async function getWorks() {
           // document.querySelector("img").remove();
           // document.body.removeChild(document.querySelector("figure"));
           figureElement.style.display = "none";
-          gallery.innerHTML = ""; // Clear the gallery
+          // gallery.innerHTML = ""; // Clear the gallery
+          figureGallery = document.getElementById(
+            "gallery-image" + worksList[i].id
+          );
+          figureGallery.remove();
 
           // location.reload();
-          getWorks();
+          // getWorks();
           // displayToutesLesPhotos();
         })
         // .then(() => {
@@ -127,24 +130,6 @@ async function getWorks() {
         //   // getWorks();
         // })
 
-        // figureElement.style.display = "none";
-        // .then((data) => {
-        //   // console.log("Delete successful", data);
-        //   figureElement.style.display = "none";
-        //   // Display an alert
-        //   alert("Projet supprimé");
-        //   // Update the gallery without refreshing the page
-        //   figureElement.remove(); // Remove the figure element from the DOM
-        // })
-        //   // Display an alert
-        //   alert("Projet supprimé");
-        //   e.preventDefault();
-        //   // Remove the element from the DOM
-        // figureElement.remove();
-        //   // // figureElement.remove("image");
-
-        //   figureElement.style.display = "none";
-        // })
         .catch((error) => {
           alert("Echec de suppression, une erreur s'est produite");
           console.error("Error:", error);
@@ -152,101 +137,31 @@ async function getWorks() {
     });
   }
 }
-//Supression des works grace a la méthode DELETE & au Token user depuis la poubelle de la modale
-//requette DELETE avec token
-// const deleteWorkID = {
-//   method: "DELETE",
-//   headers: {
-//     Authorization: `Bearer ${token}`,
-//     "Content-Type": "application/json",
-//   },
-//   mode: "cors",
-//   credentials: "same-origin",
-// };
-// //Supréssion au click sur la poubelle et mise a jour modale et gallery principale
-// function deleteWork() {
-//   const trashs = document.querySelectorAll(".fa-trash-can");
-//   trashs.forEach((trash) => {
-//     trash.addEventListener("click", (e) => {
-//       const workID = trash.id;
-//       fetch(`http://localhost:5678/api/works/${workID}`, deleteWorkID).then(
-//         () => {
-//           // Suppression de l'élément du DOM après confirmation de la suppression en base de données
-//           trash.parentElement.parentElement.remove();
-//         }
-//       );
-//       document.getElementsByClassName(workID)[0].remove();
-//     });
-//   });
-// }
-
-//
-// figureElement.remove("image");
-// figureElement.remove("modal-image" + worksList[i].id);
-// gallery.remove(modalImage + worksList[i].id);
-
-// Update the page after deleting the image
-
-const updatedWorksList = worksList.filter(
-  (work) => work.id !== worksList[i].id
-);
-gallery = document.querySelector(".gallery");
-gallery.innerHTML = ""; // Clear the gallery
-updatedWorksList.forEach((work) => {
-  let figureElement = document.createElement("figure");
-  figureElement.setAttribute("class", "modal-figure");
-  figureElement.setAttribute("id", "modal-image" + work.id);
-  let imageElement = document.createElement("img");
-
-  imageElement.src = work.imageUrl;
-  imageElement.setAttribute("alt", work.title);
-  imageElement.setAttribute("class", "modal-image");
-
-  figureElement.appendChild(imageElement);
-  gallery.appendChild(figureElement);
-
-  const poubelle = document.createElement("i");
-  poubelle.classList.add("fa-solid", "fa-trash-can", "trash-icon");
-  figureElement.appendChild(poubelle);
-
-  // Select all elements with the class name "trash-icon"
-  const trashIcons = document.getElementsByClassName("trash-icon");
-
-  // Iterate over the collection and add the event listener to each element
-  for (let i = 0; i < trashIcons.length; i++) {
-    trashIcons[i].addEventListener("click", getWorks);
-  }
-
-  poubelle.addEventListener("click", async (e) => {
-    e.preventDefault();
-    console.log("click", work.id);
-    fetch("http://localhost:5678/api/works/" + work.id, {
-      method: "DELETE",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${monToken}`,
-      },
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        alert("Projet supprimé");
-        gallery.remove(figureElement);
-        // figureElement.remove();
-        figureElement.classList.remove("modal-image");
-        figureElement.style.display = "none";
-        // document.querySelector("figure").remove(); NB La photo de Sophie Bluel disparait
-        //  gallery.remove(modalImage + worksList[i].id);
-      })
-      .catch((error) => {
-        alert("Echec de suppression.");
-        console.error("Error:", error);
-      });
-  });
-});
 
 getWorks();
+
+// async function fillGallery() {
+//   let gallery = document.querySelector(".gallery");
+//   gallery.innerHTML = ""; // Clear the gallery NB: pour éviter de dupliquer les images
+//   for (let i = 0; i < arrayOfWork.length; i++) {
+//     // Créer la figure avec l'image, titre et ajouter en tant qu'enfant à gallery (append child)
+
+//     let figureElement = document.createElement("figure");
+//     figureElement.setAttribute("id", "gallery-image" + arrayOfWork[i].id);
+//     let imageElement = document.createElement("img");
+
+//     imageElement.src = arrayOfWork[i].imageUrl;
+
+//     imageElement.setAttribute("alt", arrayOfWork[i].title);
+//     // imageElement.setAttribute("alt", worksList[i].title);
+
+//     let figCaption = document.createElement("figcaption");
+//     figCaption.innerText = arrayOfWork[i].title;
+
+//     figureElement.appendChild(imageElement);
+//     figureElement.appendChild(figCaption);
+
+//     gallery.appendChild(figureElement);
 
 // Get the form
 const addForm = document.getElementById("form-add");
@@ -311,8 +226,18 @@ submitButton.addEventListener("click", async function (event) {
       // localImages.push(data);
       // createWorkModal(data);
       // createWork(data);
+      // figureElement.add();
+      // figureElement.style.display = "block";
+      // figureElement.classList.add("modal-image");
+      // figureElement.style.display = "block";
+      gallery.innerHTML = ""; // Clear the gallery
+      // figureGallery = document.getElementById(
+      //   // "gallery-image" + worksList[i].id
+      //   "gallery-image" + worksList[i].id
+      // );
+      // figureGallery.add();
 
-      // e.preventDefault();
+      e.preventDefault();
 
       // Reset the form fields
       addForm.reset();
@@ -324,13 +249,15 @@ submitButton.addEventListener("click", async function (event) {
       submitButton.disabled = true;
       submitButton.style.backgroundColor = "#A7A7A7"; // Change to desired color
       // Je dois recharger ma galerie après avoir ajouté une image
-      getWorks();
+      // getWorks();
     })
     .catch((error) => {
       // There was an error submitting the form
       console.error("Error:", error);
     });
 });
+
+// fillGallery();
 
 addForm.addEventListener("input", function () {
   const files = addForm.querySelector("input[type=file]").files;
@@ -366,3 +293,5 @@ addForm.addEventListener("input", function () {
     submitButton.style.backgroundColor = "#A7A7A7"; // Change to desired color
   }
 });
+
+// fillGallery();

@@ -83,7 +83,7 @@ function fillGallery(arrayOfWork) {
     // Créer la figure avec l'image, titre et ajouter en tant qu'enfant à gallery (append child)
 
     let figureElement = document.createElement("figure");
-
+    figureElement.setAttribute("id", "gallery-image" + arrayOfWork[i].id);
     let imageElement = document.createElement("img");
 
     imageElement.src = arrayOfWork[i].imageUrl;
