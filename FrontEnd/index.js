@@ -88,7 +88,8 @@ function fillGallery(arrayOfWork) {
 
     imageElement.src = arrayOfWork[i].imageUrl;
 
-    imageElement.setAttribute("alt", arrayOfWork[i].name);
+    imageElement.setAttribute("alt", arrayOfWork[i].title);
+    // imageElement.setAttribute("alt", worksList[i].title);
 
     let figCaption = document.createElement("figcaption");
     figCaption.innerText = arrayOfWork[i].title;
@@ -99,11 +100,6 @@ function fillGallery(arrayOfWork) {
     gallery.appendChild(figureElement);
   }
 }
-
-// Pour afficher toutes les images au click du bouton 'Tous', ajouter une condition 'if'
-// dans la fonction filterWorksByCategory(categoryId),
-// si le paramètre du id est '0', affichez tous les résultats.
-//;
 
 function filterWorksByCategory(categoryId) {
   console.log(categoryId);

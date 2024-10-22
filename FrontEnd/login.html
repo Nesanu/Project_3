@@ -14,7 +14,6 @@
     <script src="login.js" defer></script>
 </head>
 
-
 <body>
     <header>
         <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -23,7 +22,7 @@
                 <li>projets</li>
                 <li>contact</li>
                 <li class="log-in" id="log-in">login</li>
-
+                <!-- <li class="log-out" id="log-out">logout</li> -->
                 <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
             </ul>
         </nav>
@@ -32,7 +31,7 @@
         <section id="contact">
             <h2>Log In</h2>
             <!-- <p>Vous avez un projet ? Discutons-en !</p> -->
-            <form action="http://localhost:5678/api/users/login" method="post" id="form-login" class="form-login">
+            <form action="http://localhost:5678/api/users/login" method="post" id="form-login">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" required>
                 <label for="password">Mot de Passe</label>
@@ -40,7 +39,6 @@
                 <input type="submit" value="Se connecter">
             </form>
             <a href="login.html" title="password">Mot de passe oublié</a>
-
 
         </section>
     </main>

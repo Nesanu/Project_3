@@ -111,11 +111,21 @@ async function getWorks() {
           alert("Projet supprimé");
           // Remove the element from the DOM
           figureElement.remove();
+          // document.querySelector("img").remove();
+          // document.body.removeChild(document.querySelector("figure"));
           figureElement.style.display = "none";
           gallery.innerHTML = ""; // Clear the gallery
+
           // location.reload();
           getWorks();
+          // displayToutesLesPhotos();
         })
+        // .then(() => {
+        //   // Remove the figure element from the DOM
+        //   figureElement.remove();
+        //   // gallery.innerHTML = ""; // Clear the gallery
+        //   // getWorks();
+        // })
 
         // figureElement.style.display = "none";
         // .then((data) => {
@@ -142,12 +152,37 @@ async function getWorks() {
     });
   }
 }
+//Supression des works grace a la méthode DELETE & au Token user depuis la poubelle de la modale
+//requette DELETE avec token
+// const deleteWorkID = {
+//   method: "DELETE",
+//   headers: {
+//     Authorization: `Bearer ${token}`,
+//     "Content-Type": "application/json",
+//   },
+//   mode: "cors",
+//   credentials: "same-origin",
+// };
+// //Supréssion au click sur la poubelle et mise a jour modale et gallery principale
+// function deleteWork() {
+//   const trashs = document.querySelectorAll(".fa-trash-can");
+//   trashs.forEach((trash) => {
+//     trash.addEventListener("click", (e) => {
+//       const workID = trash.id;
+//       fetch(`http://localhost:5678/api/works/${workID}`, deleteWorkID).then(
+//         () => {
+//           // Suppression de l'élément du DOM après confirmation de la suppression en base de données
+//           trash.parentElement.parentElement.remove();
+//         }
+//       );
+//       document.getElementsByClassName(workID)[0].remove();
+//     });
+//   });
+// }
 
-//
 //
 // figureElement.remove("image");
 // figureElement.remove("modal-image" + worksList[i].id);
-// figureElement.style.display = "none";
 // gallery.remove(modalImage + worksList[i].id);
 
 // Update the page after deleting the image
@@ -173,6 +208,15 @@ updatedWorksList.forEach((work) => {
   const poubelle = document.createElement("i");
   poubelle.classList.add("fa-solid", "fa-trash-can", "trash-icon");
   figureElement.appendChild(poubelle);
+
+  // Select all elements with the class name "trash-icon"
+  const trashIcons = document.getElementsByClassName("trash-icon");
+
+  // Iterate over the collection and add the event listener to each element
+  for (let i = 0; i < trashIcons.length; i++) {
+    trashIcons[i].addEventListener("click", getWorks);
+  }
+
   poubelle.addEventListener("click", async (e) => {
     e.preventDefault();
     console.log("click", work.id);
@@ -189,10 +233,10 @@ updatedWorksList.forEach((work) => {
         }
         alert("Projet supprimé");
         gallery.remove(figureElement);
-        // gallery.remove(figureElement);
         // figureElement.remove();
         figureElement.classList.remove("modal-image");
         figureElement.style.display = "none";
+        // document.querySelector("figure").remove(); NB La photo de Sophie Bluel disparait
         //  gallery.remove(modalImage + worksList[i].id);
       })
       .catch((error) => {
@@ -264,6 +308,9 @@ submitButton.addEventListener("click", async function (event) {
       // Add the new image to the gallery
       // let img = document.createElement("img");
       // img.src = data.imageUrl;
+      // localImages.push(data);
+      // createWorkModal(data);
+      // createWork(data);
 
       // e.preventDefault();
 

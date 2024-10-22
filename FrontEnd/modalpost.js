@@ -10,7 +10,7 @@ newForm.addEventListener("submit", function (event) {
   // Send a POST request to the API
   fetch("http://localhost:5678/api/works/", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json" }, // Add the 'Content-Type' header to the request
     body: JSON.stringify(formData),
     // body: formData,
   })
@@ -102,3 +102,31 @@ newForm.addEventListener("submit", function (event) {
 // // });
 
 // // form = document.getElementById("form-add");
+
+//Supression des works grace a la méthode DELETE & au Token user depuis la poubelle de la modale
+//requette DELETE avec token
+const deleteWorkID = {
+  method: "DELETE",
+  headers: {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json",
+  },
+  mode: "cors",
+  credentials: "same-origin",
+};
+//Supréssion au click sur la poubelle et mise a jour modale et gallery principale
+function deleteWork() {
+  const trashs = document.querySelectorAll(".fa-trash-can");
+  trashs.forEach((trash) => {
+    trash.addEventListener("click", (e) => {
+      const workID = trash.id;
+      fetch(`http://localhost:5678/api/works/${workID}`, deleteWorkID).then(
+        () => {
+          // Suppression de l'élément du DOM après confirmation de la suppression en base de données
+          trash.parentElement.parentElement.remove();
+        }
+      );
+      document.getElementsByClassName(workID)[0].remove();
+    });
+  });
+}
