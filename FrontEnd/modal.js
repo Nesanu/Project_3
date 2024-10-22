@@ -47,14 +47,6 @@ function displayFormulaireAjoutPhoto() {
 }
 displayFormulaireAjoutPhoto();
 
-// async function getWorks() {
-//   const reponse = await fetch("http://localhost:5678/api/works");
-//   worksList = await reponse.json();
-//   console.log("works", worksList);
-
-//   fillGallery(worksList);
-// }
-
 async function getWorks() {
   const reponse = await fetch("http://localhost:5678/api/works");
   const worksList = await reponse.json();
@@ -109,19 +101,24 @@ async function getWorks() {
           // Display an alert
           alert("Projet supprimé");
           // Remove the element from the DOM
-          figureElement.remove();
-          // document.querySelector("img").remove();
+          // figureElement.remove();
+
           // document.body.removeChild(document.querySelector("figure"));
+          // Remove the figure element from the DOM
           figureElement.style.display = "none";
           // gallery.innerHTML = ""; // Clear the gallery
-          figureGallery = document.getElementById(
+          figureElement = document.getElementById(
             "gallery-image" + worksList[i].id
           );
-          figureGallery.remove();
+          figureElement.remove();
+          //Exemple Pascal:
+          // figureGallery = document.getElementById(
+          //   "gallery-image" + worksList[i].id
+          // );
+          // figureGallery.remove();
 
           // location.reload();
           // getWorks();
-          // displayToutesLesPhotos();
         })
         // .then(() => {
         //   // Remove the figure element from the DOM
@@ -140,7 +137,7 @@ async function getWorks() {
 
 getWorks();
 
-// async function fillGallery() {
+// async function fillGallery() { /Cette fonction m'a jouée un tour, j'ai rempli la galerie & modale avec des images de la maison bleue, envoron 800 images lol
 //   let gallery = document.querySelector(".gallery");
 //   gallery.innerHTML = ""; // Clear the gallery NB: pour éviter de dupliquer les images
 //   for (let i = 0; i < arrayOfWork.length; i++) {
@@ -216,28 +213,37 @@ submitButton.addEventListener("click", async function (event) {
     })
     .then((data) => {
       // The form was successfully submitted
-      // You can update the gallery here
+
       alert("Projet ajouté");
       console.log("Success:", data);
       // location.reload();
-      // Add the new image to the gallery
-      // let img = document.createElement("img");
-      // img.src = data.imageUrl;
-      // localImages.push(data);
-      // createWorkModal(data);
-      // createWork(data);
-      // figureElement.add();
-      // figureElement.style.display = "block";
-      // figureElement.classList.add("modal-image");
-      // figureElement.style.display = "block";
-      gallery.innerHTML = ""; // Clear the gallery
-      // figureGallery = document.getElementById(
-      //   // "gallery-image" + worksList[i].id
-      //   "gallery-image" + worksList[i].id
-      // );
-      // figureGallery.add();
 
-      e.preventDefault();
+      // Add the new image to the gallery
+      let img = document.createElement("img");
+      img.src = data.imageUrl;
+      img.alt = data.title;
+      let figcaption = document.createElement("figcaption");
+      figcaption.innerText = data.title;
+      let figure = document.createElement("figure");
+      figure.appendChild(img);
+      figure.appendChild(figcaption);
+      let gallery = document.querySelector(".gallery_id");
+      gallery.appendChild(figure);
+      // gallery.innerHTML = ""; // Clear the gallery
+
+      // Add the new image to the main gallery
+      let mainGallery = document.querySelector(".gallery");
+      let mainFigure = document.createElement("figure");
+      mainFigure.setAttribute("id", "gallery-image" + data.id);
+      let mainImg = document.createElement("img");
+      mainImg.src = data.imageUrl;
+      mainImg.alt = data.title;
+      let mainFigcaption = document.createElement("figcaption");
+      mainFigcaption.innerText = data.title;
+      mainFigure.appendChild(mainImg);
+      mainFigure.appendChild(mainFigcaption);
+      mainGallery.appendChild(mainFigure);
+      // e.preventDefault();
 
       // Reset the form fields
       addForm.reset();
@@ -249,7 +255,7 @@ submitButton.addEventListener("click", async function (event) {
       submitButton.disabled = true;
       submitButton.style.backgroundColor = "#A7A7A7"; // Change to desired color
       // Je dois recharger ma galerie après avoir ajouté une image
-      // getWorks();
+      getWorks();
     })
     .catch((error) => {
       // There was an error submitting the form
@@ -293,5 +299,3 @@ addForm.addEventListener("input", function () {
     submitButton.style.backgroundColor = "#A7A7A7"; // Change to desired color
   }
 });
-
-// fillGallery();
