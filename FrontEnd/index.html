@@ -26,13 +26,8 @@
 <body>
 
 	<div class="blackBloc" id="blackBloc">
-		<!-- <input type="button" class="mode-edition"><i class="fa-regular fa-pen-to-square" title="fa-pen-to-square"
-			style="display:none;"></i> -->
 		<button class="mode-edition"><i class="fa-regular fa-pen-to-square" title="fa-regular-icon"></i> Mode
 			édition</button>
-		<!-- <button id="btn-edit"><i class="fa-regular fa-pen-to-square" title="fa-regular-icon"></i> Mode
-				édition</button>
-	 -->
 
 	</div>
 
@@ -71,6 +66,7 @@
 		<section id="portfolio">
 			<div id="projets-modifier">
 				<h2 class="mes_projets">Mes Projets</h2>
+
 				<!-- Trigger/Open The Modal -->
 				<div class="ipen_modifier">
 					<i class="fa-regular fa-pen-to-square" title="icon-pen-to-square"></i>
@@ -83,11 +79,6 @@
 				<div class="flex-row-center" id="filtres">
 				</div>
 
-
-				<!-- <div class="container-filtres">
-						<p class="text-filtres">Filtres</p>
-
-					</div> -->
 			</div>
 			<!-- The Modal -->
 			<div id="myModal" class="modal">
@@ -95,22 +86,17 @@
 				<div class="modal-content">
 					<div>
 						<span id="close-btn" class="close">&times;</span>
-						<!-- <span id="prev-btn" onclick="displayToutesLesPhotos()">&times; </span> -->
+
 						<span id="arrow-left" onclick="displayToutesLesPhotos()"><i
 								class="fa-solid fa-arrow-left"></i></span>
 					</div>
-					<!-- <span class="close">&times;</span> -->
 					<h2 id="modal-title" class="galerie_photo"> Galerie photo</h2>
 
-					<!-- <button onclick="displayFormulairesAjout()">formulaires</button> -->
-					<!-- Utiliser classList.add pour le bouton "+ Ajouter photo" -->
 					<div class="container-ajoutphoto">
 						<form id="form-add" class="form-add" action="#" method="post">
 
 							<div id="ajout-photo" class="ajout-photo">
-								<!-- <div id="fa-image"></div> -->
 
-								<!-- <span id="icon-fa-regular"> </span>-->
 								<i class="fa-regular fa-image" title="icon-image" id="icon-image"></i>
 								<img src="" id="addimage" width="50px" height="50px" hidden>
 								<div class="image-add">
@@ -122,9 +108,8 @@
 							<div id="form-bloc">
 								<label for="title">Titre</label>
 								<input type="text" class="form-title" name="title" title="title">
-								<!-- <input type="text" name="description" id="description"> -->
+
 								<label for="category">Catégorie</label>
-								<!-- <select name="category" id="category">Catégorie</select> -->
 								<select name="category" class="form-category" id="form-category">
 									<option value=""></option>
 									<option value=1>Objets</option>
@@ -139,7 +124,7 @@
 						</form>
 
 						<div id="touteslesphotos">
-							<!-- <h1>Galerie photo</h1> -->
+
 							<div id="gallery_id" class="gallery_id"></div>
 							<div class="modal-image">
 

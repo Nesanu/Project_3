@@ -136,13 +136,6 @@
 
 }
 
-/* #prev-btn {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    width: 100%;
-
-} */
 .container-ajoutphoto {
     display: flex;
     justify-content: center;
@@ -175,12 +168,6 @@
     border: none;
 
 }
-
-/* #form-bloc>label {
-    /* margin-bottom: 5px; */
-
-/* } */
-
 
 
 .hr[title*="hr-bloc"] {

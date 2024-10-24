@@ -5,8 +5,8 @@ let modal = document.getElementById("myModal");
 // Get the button that opens the modal
 let btn = document.getElementById("myBtn");
 
-// // Get the <span> element that closes the modal
-// let span = document.getElementsByClassName("close")[0];
+// // Get the <span> element that closes the modal ??? supprimer
+let span = document.getElementsByClassName("close")[0];
 
 // Get the <span> element that closes the modal
 let closeBtn = document.getElementById("close-btn");
@@ -100,10 +100,6 @@ async function getWorks() {
           }
           // Display an alert
           alert("Projet supprimé");
-          // Remove the element from the DOM
-          // figureElement.remove();
-
-          // document.body.removeChild(document.querySelector("figure"));
           // Remove the figure element from the DOM
           figureElement.style.display = "none";
           // gallery.innerHTML = ""; // Clear the gallery
@@ -116,16 +112,8 @@ async function getWorks() {
           //   "gallery-image" + worksList[i].id
           // );
           // figureGallery.remove();
-
           // location.reload();
-          // getWorks();
         })
-        // .then(() => {
-        //   // Remove the figure element from the DOM
-        //   figureElement.remove();
-        //   // gallery.innerHTML = ""; // Clear the gallery
-        //   // getWorks();
-        // })
 
         .catch((error) => {
           alert("Echec de suppression, une erreur s'est produite");
@@ -136,29 +124,6 @@ async function getWorks() {
 }
 
 getWorks();
-
-// async function fillGallery() { /Cette fonction m'a jouée un tour, j'ai rempli la galerie & modale avec des images de la maison bleue, envoron 800 images lol
-//   let gallery = document.querySelector(".gallery");
-//   gallery.innerHTML = ""; // Clear the gallery NB: pour éviter de dupliquer les images
-//   for (let i = 0; i < arrayOfWork.length; i++) {
-//     // Créer la figure avec l'image, titre et ajouter en tant qu'enfant à gallery (append child)
-
-//     let figureElement = document.createElement("figure");
-//     figureElement.setAttribute("id", "gallery-image" + arrayOfWork[i].id);
-//     let imageElement = document.createElement("img");
-
-//     imageElement.src = arrayOfWork[i].imageUrl;
-
-//     imageElement.setAttribute("alt", arrayOfWork[i].title);
-//     // imageElement.setAttribute("alt", worksList[i].title);
-
-//     let figCaption = document.createElement("figcaption");
-//     figCaption.innerText = arrayOfWork[i].title;
-
-//     figureElement.appendChild(imageElement);
-//     figureElement.appendChild(figCaption);
-
-//     gallery.appendChild(figureElement);
 
 // Get the form
 const addForm = document.getElementById("form-add");

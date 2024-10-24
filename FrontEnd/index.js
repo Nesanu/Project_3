@@ -9,7 +9,7 @@ if (!localStorage.getItem("token")) {
   document.querySelector("#log-out").style.display = "none";
 } else {
   console.log("token found");
-  // document.querySelector("#btn-edit").style.display = "block";
+
   document.querySelector("#blackBloc").style.display = "flex";
   document.querySelector("#filtres").style.display = "none";
   document.querySelector("#log-in").style.display = "none";
@@ -43,7 +43,6 @@ async function getCategories() {
   console.log("categories", categoriesList);
 
   // Recupérer la div filtres-travaux du fichier index.html:
-  // let categories = document.querySelector(".categories"); ?
 
   let filtres = document.querySelector(".flex-row-center");
   console.log(filtres);
