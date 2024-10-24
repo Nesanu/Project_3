@@ -6,7 +6,7 @@ let modal = document.getElementById("myModal");
 let btn = document.getElementById("myBtn");
 
 // // Get the <span> element that closes the modal ??? supprimer
-let span = document.getElementsByClassName("close")[0];
+// let span = document.getElementsByClassName("close")[0];
 
 // Get the <span> element that closes the modal
 let closeBtn = document.getElementById("close-btn");
@@ -162,7 +162,6 @@ submitButton.addEventListener("click", async function (event) {
   formData.append("title", title);
   formData.append("category", category);
   console.log(formData);
-  // Create a new FormData object
 
   await fetch("http://localhost:5678/api/works/", {
     method: "POST",
