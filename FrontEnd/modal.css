@@ -84,13 +84,6 @@
 
 }
 
-/* #close-btn {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-} */
-
 .close:hover,
 .close:focus {
     color: black;
@@ -181,12 +174,6 @@
 
 }
 
-/* #bloc-gallery {
-    display: flex;
-    width: 420px;
-    display: flex;
-    position: column;
-} */
 
 .hr[title*="hr-bloc-gallery"] {
     color: #B3B3B3;
@@ -227,15 +214,7 @@ title label {
     margin-top: 7px;
 }
 
-/* .title {
-        display: flex;
-    justify-content: center;
-    margin-top: 7px;
-    /* line-height: 16.42px; */
-/* font-size: 14px;
-width: 65px;
-height: 16px;
-} */
+
 
 input[type="text"] {
     /* margin-top: 10px; */
@@ -261,11 +240,6 @@ input[type="button"] {
     cursor: not-allowed;
 }
 
-/* #submit-button {
-    background-color: #1D6154;
-    cursor: pointer;
-  }
-   */
 
 #submit-button {
     display: flex;
@@ -297,7 +271,7 @@ input[type="button"] {
     gap: 10px;
     /* min-width: 80%;
     height: auto; 
-  padding: 5px; */
+    padding: 5px; */
 }
 
 input[type="file"] {
@@ -364,21 +338,10 @@ input[type="submit"] {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* font-weight: 600; */
-}
-
-/* .i[title*="icon-image"] {
-    color: #B9C5CC;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
-    width: auto;
     height: 100px;
-    /* stroke-width: 10px; */
-/* } */
-
+    /* align-items: center;
+    font-weight: 600; */
+}
 
 #gallery_id {
     display: flex;
@@ -486,12 +449,6 @@ input[type="submit"] {
 
 }
 
-/* .image-add>label {
-    width: 100px;
-
-} */
-
-
 #gallery {
     display: flex;
     flex-direction: row;
@@ -502,3 +459,8 @@ input[type="submit"] {
     margin: 10px 0px 40px 0px;
 
 }
+
+/* .image-add>label {
+    width: 100px;
+
+} */

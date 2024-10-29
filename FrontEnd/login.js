@@ -10,7 +10,6 @@ form.addEventListener("submit", async (event) => {
 
   // Verifier si les champs email et password sont vides. Si oui, affichez une alerte.
   // Si les champs ne sont pas vides, continuez avec la requête fetch.
-  // ????? Quand j'enlève required des champs input password et email, la condition if (!email || !password) fonctionne, pourquoi ?
 
   if (!email || !password) {
     window.alert("Email and password cannot be empty.");
@@ -25,7 +24,7 @@ form.addEventListener("submit", async (event) => {
     password: password,
   };
 
-  // Envoyer un requete POST à l'URL "http://localhost:5678/api/users/login"
+  // Envoyer un requete POST à l'URL de l'API pour se connecter.
 
   const response = await fetch("http://localhost:5678/api/users/login", {
     method: "POST",

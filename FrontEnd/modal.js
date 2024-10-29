@@ -5,9 +5,6 @@ let modal = document.getElementById("myModal");
 // Get the button that opens the modal
 let btn = document.getElementById("myBtn");
 
-// // Get the <span> element that closes the modal ??? supprimer
-// let span = document.getElementsByClassName("close")[0];
-
 // Get the <span> element that closes the modal
 let closeBtn = document.getElementById("close-btn");
 
@@ -81,7 +78,6 @@ async function getWorks() {
 
     poubelle.addEventListener("click", async (e) => {
       e.preventDefault();
-      // e.stopPropagation();
 
       console.log("click", worksList[i].id);
       // Force reload of the web page without manual refresh
@@ -102,16 +98,10 @@ async function getWorks() {
           alert("Projet supprimé");
           // Remove the figure element from the DOM
           figureElement.style.display = "none";
-          // gallery.innerHTML = ""; // Clear the gallery
           figureElement = document.getElementById(
             "gallery-image" + worksList[i].id
           );
           figureElement.remove();
-          //Exemple Pascal:
-          // figureGallery = document.getElementById(
-          //   "gallery-image" + worksList[i].id
-          // );
-          // figureGallery.remove();
           // location.reload();
         })
 
@@ -145,7 +135,7 @@ const submitButton = document.getElementById("submit-button");
 submitButton.addEventListener("click", async function (event) {
   // Prevent the default form submission behavior
   event.preventDefault();
-  // event.stopPropagation();
+  event.stopPropagation();
   console.log("hello submit");
 
   // Create a FormData object from the form:
@@ -193,7 +183,6 @@ submitButton.addEventListener("click", async function (event) {
       figure.appendChild(figcaption);
       let gallery = document.querySelector(".gallery_id");
       gallery.appendChild(figure);
-      // gallery.innerHTML = ""; // Clear the gallery
 
       // Add the new image to the main gallery
       let mainGallery = document.querySelector(".gallery");
@@ -207,8 +196,7 @@ submitButton.addEventListener("click", async function (event) {
       mainFigure.appendChild(mainImg);
       mainFigure.appendChild(mainFigcaption);
       mainGallery.appendChild(mainFigure);
-      // e.preventDefault();
-
+  
       // Reset the form fields
       addForm.reset();
       const imageElement = document.getElementById("addimage");
@@ -226,8 +214,6 @@ submitButton.addEventListener("click", async function (event) {
       console.error("Error:", error);
     });
 });
-
-// fillGallery();
 
 addForm.addEventListener("input", function () {
   const files = addForm.querySelector("input[type=file]").files;
