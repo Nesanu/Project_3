@@ -45,7 +45,7 @@ async function getCategories() {
   // Recupérer la div filtres-travaux du fichier index.html:
 
   let filtres = document.querySelector(".flex-row-center");
-  console.log(filtres);
+  // console.log(filtres);
 
   let buttonElement = document.createElement("button");
   buttonElement.setAttribute("class", "btn-filtres");
@@ -57,7 +57,7 @@ async function getCategories() {
   filtres.appendChild(buttonElement);
 
   for (let i = 0; i < categoriesList.length; i++) {
-    console.log(categoriesList[i].name);
+    // console.log(categoriesList[i].name);
 
     // Créer le filtre des travaux document.createElement et ajouter en tant qu'enfant à la div 'categories'
     // (append child)
@@ -68,7 +68,7 @@ async function getCategories() {
     filtres.appendChild(buttonElement);
 
     buttonElement.addEventListener("click", () => {
-      console.log(categoriesList[i].name);
+      // console.log(categoriesList[i].name);
       filterWorksByCategory(categoriesList[i].id);
     });
   }
@@ -101,10 +101,10 @@ function fillGallery(arrayOfWork) {
 }
 
 function filterWorksByCategory(categoryId) {
-  console.log(categoryId);
+  // console.log(categoryId);
 
   let resultat = worksList.filter((work) => work.categoryId === categoryId);
-  console.log(resultat);
+  // console.log(resultat);
 
   fillGallery(resultat);
 }

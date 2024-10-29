@@ -136,10 +136,9 @@ submitButton.addEventListener("click", async function (event) {
   // Prevent the default form submission behavior
   event.preventDefault();
   event.stopPropagation();
-  console.log("hello submit");
+  // console.log("hello submit");
 
   // Create a FormData object from the form:
-
   // get files from the input element:
   const files = addForm.querySelector("input[type=file]").files;
   const title = addForm.querySelector(".form-title").value;
@@ -196,7 +195,7 @@ submitButton.addEventListener("click", async function (event) {
       mainFigure.appendChild(mainImg);
       mainFigure.appendChild(mainFigcaption);
       mainGallery.appendChild(mainFigure);
-  
+
       // Reset the form fields
       addForm.reset();
       const imageElement = document.getElementById("addimage");
