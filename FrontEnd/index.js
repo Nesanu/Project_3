@@ -49,7 +49,7 @@ async function getCategories() {
 
   let buttonElement = document.createElement("button");
   buttonElement.setAttribute("class", "btn-filtres");
-  // buttonElement = document.createElement("tousButton");
+
   buttonElement.innerText = "Tous";
   buttonElement.addEventListener("click", () => {
     fillGallery(worksList);
@@ -68,8 +68,18 @@ async function getCategories() {
     filtres.appendChild(buttonElement);
 
     buttonElement.addEventListener("click", () => {
-      // console.log(categoriesList[i].name);
       filterWorksByCategory(categoriesList[i].id);
+
+      document.querySelectorAll(".btn-filtres").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".btn-filtres").forEach((btn) => {
+            btn.classList.remove("active");
+            btn.style.backgroundColor = "";
+          });
+          button.classList.add("active");
+          button.style.backgroundColor = "#1D6154";
+        });
+      });
     });
   }
 }
@@ -88,7 +98,6 @@ function fillGallery(arrayOfWork) {
     imageElement.src = arrayOfWork[i].imageUrl;
 
     imageElement.setAttribute("alt", arrayOfWork[i].title);
-    // imageElement.setAttribute("alt", worksList[i].title);
 
     let figCaption = document.createElement("figcaption");
     figCaption.innerText = arrayOfWork[i].title;

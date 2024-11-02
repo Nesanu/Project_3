@@ -10,12 +10,19 @@
     margin: 0;
 }
 
-#log-out {
+.log-out {
     display: block;
 }
 
 #log-in {
     display: none;
+}
+
+.ul-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 3px;
+    /* Adjust the gap value as needed */
 }
 
 .mes_projets {

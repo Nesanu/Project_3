@@ -52,7 +52,7 @@ async function getWorks() {
   // Recupérer la div gallery du fichier index.html:
   let gallery = document.querySelector(".gallery_id");
   console.log(gallery);
-  gallery.innerHTML = ""; // Clear the gallery NB: pour éviter de dupliquer les images
+  gallery.innerHTML = ""; // Effacer la galérie pour éviter de dupliquer les images
 
   for (let i = 0; i < worksList.length; i++) {
     // Créer la figure avec l'image, titre et ajouter en tant qu'enfant à gallery (append child)
@@ -195,6 +195,8 @@ submitButton.addEventListener("click", async function (event) {
       mainFigure.appendChild(mainImg);
       mainFigure.appendChild(mainFigcaption);
       mainGallery.appendChild(mainFigure);
+      // Automatically return to the modal gallery after adding an image
+      displayToutesLesPhotos();
 
       // Reset the form fields
       addForm.reset();
@@ -213,7 +215,7 @@ submitButton.addEventListener("click", async function (event) {
       console.error("Error:", error);
     });
 });
-
+// Control the submit button in the form
 addForm.addEventListener("input", function () {
   const files = addForm.querySelector("input[type=file]").files;
   const title = addForm.querySelector(".form-title").value;

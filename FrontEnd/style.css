@@ -116,6 +116,7 @@ ul {
 	list-style: none;
 }
 
+
 blockquote,
 q {
 	quotes: none;
@@ -223,6 +224,11 @@ li:hover {
 	margin-bottom: 1em;
 }
 
+.btn-filtres.active {
+	/* background-color: green; */
+	background-color: #1D6154;
+	color: white;
+}
 
 .flex-row-center {
 	display: flex;
@@ -282,10 +288,10 @@ li:hover {
 	min-width: 100px;
 }
 
-.btn-filtres:hover {
+/* .btn-filtres:hover {
 	background-color: #1D6154;
 	color: white;
-}
+} */
 
 
 .gallery {
