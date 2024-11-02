@@ -1,15 +1,9 @@
-console.log("Hello");
-
 if (!localStorage.getItem("token")) {
-  console.log("token not found");
-
   document.querySelector("#blackBloc").style.display = "none";
   document.querySelector("#filtres").style.display = "flex";
   document.querySelector("#log-in").style.display = "block";
   document.querySelector("#log-out").style.display = "none";
 } else {
-  console.log("token found");
-
   document.querySelector("#blackBloc").style.display = "flex";
   document.querySelector("#filtres").style.display = "none";
   document.querySelector("#log-in").style.display = "none";
@@ -17,11 +11,8 @@ if (!localStorage.getItem("token")) {
 }
 
 if (!localStorage.getItem("token")) {
-  console.log("token not found");
-
   document.querySelector(".ipen_modifier").style.display = "none";
 } else {
-  console.log("token found");
   document.querySelector(".ipen_modifier").style.display = "block";
 }
 
@@ -30,8 +21,6 @@ let worksList = [];
 async function getWorks() {
   const reponse = await fetch("http://localhost:5678/api/works");
   worksList = await reponse.json();
-  console.log("works", worksList);
-
   fillGallery(worksList);
 }
 
@@ -40,12 +29,10 @@ getWorks();
 async function getCategories() {
   const reponse = await fetch("http://localhost:5678/api/categories");
   const categoriesList = await reponse.json();
-  console.log("categories", categoriesList);
 
-  // Recupérer la div filtres-travaux du fichier index.html:
+  // Retrieve the filters-works div from the index.html file
 
   let filtres = document.querySelector(".flex-row-center");
-  // console.log(filtres);
 
   let buttonElement = document.createElement("button");
   buttonElement.setAttribute("class", "btn-filtres");
@@ -56,11 +43,22 @@ async function getCategories() {
   });
   filtres.appendChild(buttonElement);
 
-  for (let i = 0; i < categoriesList.length; i++) {
-    // console.log(categoriesList[i].name);
+  // Check if the 'Tous' button should be active on page load
+  if (
+    localStorage.getItem("activeCategory") === "all" ||
+    !localStorage.getItem("activeCategory")
+  ) {
+    buttonElement.classList.add("active");
+    buttonElement.style.backgroundColor = "#1D6154";
+  }
 
-    // Créer le filtre des travaux document.createElement et ajouter en tant qu'enfant à la div 'categories'
-    // (append child)
+  // Save the active category to localStorage when the 'Tous' button is clicked
+  buttonElement.addEventListener("click", () => {
+    localStorage.setItem("activeCategory", "all");
+  });
+
+  for (let i = 0; i < categoriesList.length; i++) {
+    // Create the filter for works and append it as a child to the 'categories' div
 
     buttonElement = document.createElement("button");
     buttonElement.setAttribute("class", "btn-filtres");
@@ -70,6 +68,7 @@ async function getCategories() {
     buttonElement.addEventListener("click", () => {
       filterWorksByCategory(categoriesList[i].id);
 
+      // Keep the filter button pressed and active when clicked and deactivate it when the button is changed
       document.querySelectorAll(".btn-filtres").forEach((button) => {
         button.addEventListener("click", () => {
           document.querySelectorAll(".btn-filtres").forEach((btn) => {
@@ -89,7 +88,7 @@ function fillGallery(arrayOfWork) {
   gallery.innerHTML = "";
 
   for (let i = 0; i < arrayOfWork.length; i++) {
-    // Créer la figure avec l'image, titre et ajouter en tant qu'enfant à gallery (append child)
+    //  Create figure with image, title and append as a child to gallery (append child)
 
     let figureElement = document.createElement("figure");
     figureElement.setAttribute("id", "gallery-image" + arrayOfWork[i].id);
@@ -110,10 +109,7 @@ function fillGallery(arrayOfWork) {
 }
 
 function filterWorksByCategory(categoryId) {
-  // console.log(categoryId);
-
   let resultat = worksList.filter((work) => work.categoryId === categoryId);
-  // console.log(resultat);
 
   fillGallery(resultat);
 }

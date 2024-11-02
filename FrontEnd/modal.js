@@ -47,16 +47,12 @@ displayFormulaireAjoutPhoto();
 async function getWorks() {
   const reponse = await fetch("http://localhost:5678/api/works");
   const worksList = await reponse.json();
-  console.log("works", worksList);
 
-  // Recupérer la div gallery du fichier index.html:
+  // Retrieve the gallery div from the index.html file
   let gallery = document.querySelector(".gallery_id");
-  console.log(gallery);
-  gallery.innerHTML = ""; // Effacer la galérie pour éviter de dupliquer les images
+  gallery.innerHTML = ""; // Delete the gallery to avoid duplicating images
 
   for (let i = 0; i < worksList.length; i++) {
-    // Créer la figure avec l'image, titre et ajouter en tant qu'enfant à gallery (append child)
-
     let figureElement = document.createElement("figure");
     figureElement.setAttribute("class", "modal-figure");
     figureElement.setAttribute("id", "modal-image" + worksList[i].id);
@@ -74,13 +70,9 @@ async function getWorks() {
     const poubelle = document.createElement("i");
     poubelle.classList.add("fa-solid", "fa-trash-can", "trash-icon");
     figureElement.appendChild(poubelle);
-    console.log(poubelle);
 
     poubelle.addEventListener("click", async (e) => {
       e.preventDefault();
-
-      console.log("click", worksList[i].id);
-      // Force reload of the web page without manual refresh
 
       // Send a DELETE request to the API
       fetch("http://localhost:5678/api/works/" + worksList[i].id, {
@@ -107,7 +99,6 @@ async function getWorks() {
 
         .catch((error) => {
           alert("Echec de suppression, une erreur s'est produite");
-          console.error("Error:", error);
         });
     });
   }
@@ -120,14 +111,11 @@ const addForm = document.getElementById("form-add");
 const fileInput = addForm.querySelector("input[type=file]");
 fileInput.addEventListener("change", (event) => {
   const selectedPic = event.target.files[0];
-  console.log(selectedPic);
   const imageElement = document.getElementById("addimage");
   imageElement.src = URL.createObjectURL(selectedPic);
   const icon = document.getElementById("icon-image");
   icon.style.display = "none";
   imageElement.style.display = "block"; // display the image
-  console.log(imageElement);
-  console.log(icon);
 });
 
 // Add a submit event listener to the form
@@ -136,21 +124,17 @@ submitButton.addEventListener("click", async function (event) {
   // Prevent the default form submission behavior
   event.preventDefault();
   event.stopPropagation();
-  // console.log("hello submit");
 
-  // Create a FormData object from the form:
-  // get files from the input element:
+  // Create a FormData object from the form.
+  // Get files from the input element.
   const files = addForm.querySelector("input[type=file]").files;
   const title = addForm.querySelector(".form-title").value;
   const category = addForm.querySelector(".form-category").value;
   const formData = new FormData();
-  console.log(files[0]);
-  console.log(title);
-  console.log(category);
+
   formData.append("image", files[0]);
   formData.append("title", title);
   formData.append("category", category);
-  console.log(formData);
 
   await fetch("http://localhost:5678/api/works/", {
     method: "POST",
@@ -168,7 +152,6 @@ submitButton.addEventListener("click", async function (event) {
       // The form was successfully submitted
 
       alert("Projet ajouté");
-      console.log("Success:", data);
       // location.reload();
 
       // Add the new image to the gallery
@@ -207,14 +190,14 @@ submitButton.addEventListener("click", async function (event) {
       icon.style.display = "block";
       submitButton.disabled = true;
       submitButton.style.backgroundColor = "#A7A7A7"; // Change to desired color
-      // Je dois recharger ma galerie après avoir ajouté une image
+      // Reload my gallery after adding an image
       getWorks();
     })
     .catch((error) => {
       // There was an error submitting the form
-      console.error("Error:", error);
     });
 });
+
 // Control the submit button in the form
 addForm.addEventListener("input", function () {
   const files = addForm.querySelector("input[type=file]").files;

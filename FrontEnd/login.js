@@ -1,30 +1,27 @@
 const form = document.querySelector("#form-login");
 form.addEventListener("submit", async (event) => {
-  // console.log(event);
-
+  // Prevent the default form submission behavior
   event.preventDefault();
 
   const email = document.getElementById("email").value;
 
   const password = document.getElementById("password").value;
 
-  // Verifier si les champs email et password sont vides. Si oui, affichez une alerte.
-  // Si les champs ne sont pas vides, continuez avec la requête fetch.
+  // Check for the empty fieds of the email and password. If so, display an alert.
 
   if (!email || !password) {
     window.alert("Email and password cannot be empty.");
     return;
   }
 
-  // Préparer les données à envoyer au serveur, en utilisant un objet.
-  // Cet objet doit contenir les clés email et password.
+  // An object that contains the email and password fields is created to be sent to the server.
 
   const idData = {
     email: email,
     password: password,
   };
 
-  // Envoyer un requete POST à l'URL de l'API pour se connecter.
+  // A POST request is sent to the server with the email and password field in the request body.
 
   const response = await fetch("http://localhost:5678/api/users/login", {
     method: "POST",
@@ -32,9 +29,11 @@ form.addEventListener("submit", async (event) => {
     body: JSON.stringify(idData),
   });
 
+  // The response from the server is converted to JSON format.
   const data = await response.json();
 
-  // Créer une condition si le token existe, stockez-le dans le local storage et redirigez l'utilisateur vers la page index.html.
+  // If the server response contains a token, it is stored in the local storage and the user is redirected to the index.html page.
+  // If no token is found in the server's response, an alert is displayed.
 
   if (data.token) {
     window.localStorage.setItem("token", data.token);
