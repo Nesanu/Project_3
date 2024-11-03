@@ -233,3 +233,14 @@ addForm.addEventListener("input", function () {
     submitButton.style.backgroundColor = "#A7A7A7"; // Change to desired color
   }
 });
+// Get the logout button
+const logoutBtn = document.getElementById("log-out");
+
+// When the user clicks on the logout button, log out and redirect to the main page
+logoutBtn.onclick = function () {
+  // Clear the token from local storage
+  localStorage.removeItem("token");
+
+  // Redirect to the main page
+  window.location.href = "index.html";
+};
